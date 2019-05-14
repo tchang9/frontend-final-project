@@ -62,3 +62,57 @@
   margin-left: 160px; /* Same as the width of the sidebar */
   padding: 0px 10px;
 }
+.AppContainer {
+  display: grid;
+  grid-template-areas: "sidebar header"
+                      "sidebar nav"
+                      "sidebar bodycontainer";
+}
+.sidebar {
+  grid-area: sidebar;
+  background-color: coral
+}
+.header {
+  grid-area: header;
+  display: grid;
+  background-color: burlywood;
+  grid-template-areas: "eventname eventdate eventlocation editevent user"
+}
+.nav {
+  grid-area: nav;
+  display: grid;
+  background-color: darkkhaki;
+  grid-template-areas: "topic schedule attendees"
+}
+.bodyContainer {
+  grid-area: bodycontainer;
+  background-color: rosybrown
+}
+
+/* Header Component CSS */
+.eventName {
+  grid-area: eventname
+}
+.eventDate {
+  grid-area: eventdate
+}
+.eventLocation {
+  grid-area: eventlocation
+}
+.editEvent {
+  grid-area: editevent
+}
+.user {
+  grid-area: user
+}
+
+/* Nav Component CSS */
+.topic {
+  grid-area: topic
+}
+.schedule {
+  grid-area: schedule
+}
+.attendees {
+  grid-area: attendees
+}

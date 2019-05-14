@@ -25,7 +25,7 @@ class Login extends React.Component{
                         name="email" 
                         value={this.state.email}
                     />
-                    Comment:
+                    Password:
                     <input 
                         onChange={this.handleChange}type="text" 
                         name="password" 

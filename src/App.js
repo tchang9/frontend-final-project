@@ -6,11 +6,11 @@ import Nav from './containers/Nav'
 import BodyContainer from './containers/BodyContainer'
 import Login from './components/Login'
 import AddUserForm from './components/AddUserForm'
-
+import AddEventForm from './components/AddEventForm'
 class App extends React.Component {
   render() {
     return (
-      <AddUserForm />
+      <AddEventForm />
     )
   }
 }

@@ -23,15 +23,34 @@ class AddUserForm extends React.Component{
                     First Name
                     <input 
                         onChange={this.handleChange} type="text" 
+                        name="firstName" 
+                        value={this.state.firstName}
+                    />
+                    Last Name:
+                    <input 
+                        onChange={this.handleChange}type="text" 
+                        name="lastName" 
+                        value={this.state.lastName}
+                    />
+                    Email:
+                    <input 
+                        onChange={this.handleChange} type="text" 
                         name="email" 
                         value={this.state.email}
                     />
-                    Comment:
+                    Password:
                     <input 
                         onChange={this.handleChange}type="text" 
                         name="password" 
-                        value={this.state.password}/>
-                    <button>Submit</button>
+                        value={this.state.password}
+                    />
+                    Confirm Password:
+                    <input 
+                        onChange={this.handleChange}type="text" 
+                        name="confirmPassword" 
+                        value={this.state.confirmPassword}
+                    />
+                    <button>Next</button>
                 </form> 
             </>
         )

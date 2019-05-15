@@ -1,6 +1,20 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Sidebar = () => {
+const Sidebar = ({events}) => {
+    
+    const renderEvents = () => {
+        return events.map(event => {
+            return(
+                <div key={event.id}>
+                    <button className="item">
+                        {event.name}
+                    </button>
+                </div>
+            )
+        })
+    }
+
     return (
         <div>
             <div>
@@ -9,16 +23,7 @@ const Sidebar = () => {
             <div>
                 <h4>Events</h4>
             </div>
-            <div>
-                <button className="item">
-                    Japan 12/19
-                </button>
-            </div>
-            <div>
-            <button className="item">
-                Kevin's Wedding
-            </button>
-            </div>
+            {renderEvents()}
             <div>
                 <button className="item">
                     Add New Event
@@ -28,4 +33,10 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+function mapStateToProps(state) {
+    return {
+        events: state.events
+    }
+}
+
+export default connect(mapStateToProps)(Sidebar)

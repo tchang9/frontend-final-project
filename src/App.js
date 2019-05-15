@@ -1,33 +1,22 @@
 import React from 'react';
 import './App.css';
-import Sidebar from './components/Sidebar'
-import Header from './components/Header'
-import Nav from './containers/Nav'
-import BodyContainer from './containers/BodyContainer'
 import Login from './components/Login'
 import AddUserForm from './components/AddUserForm'
 import AddEventForm from './components/AddEventForm'
+import { Route } from 'react-router-dom'
+import ProfileContainer from './containers/ProfileContainer'
+
 class App extends React.Component {
   render() {
     return (
-      <AddEventForm />
+      <>
+        <Route path='/login' component = {Login} />
+        <Route path='/signup' component = {AddUserForm} />
+        <Route path='/add-event' component = {AddEventForm} />
+        <Route path='/profile' component = {ProfileContainer} />
+      </>
     )
   }
 }
 
 export default App
-
-{/* <div className="AppContainer">
-<div className="sidebar">
-  <Sidebar />
-</div>
-<div className="header">
-  <Header />
-</div>
-<div className="nav">
-  <Nav />
-</div>
-<div className="bodyContainer">
-  <BodyContainer />
-</div>
-</div> */}

@@ -15,11 +15,16 @@ class AddUserForm extends React.Component{
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.history.push('/add-event')
+    }
+
     render() {
         return (
             <>
                 <h1>Create Your Account</h1>
-                <form>
+                <form onSubmit={this.handleSubmit} >
                     First Name
                     <input 
                         onChange={this.handleChange} type="text" 

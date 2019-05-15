@@ -13,12 +13,21 @@ class Login extends React.Component{
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.history.push('/profile')
+    }
+        
+    handleClick = () => {
+        this.props.history.push('/signup')
+    }
+
     render() {
         return (
             <>
                 <h1>Project Title</h1>
                 <p>Sign in </p>
-                <form>
+                <form onSubmit={this.handleSubmit} >
                     Email
                     <input 
                         onChange={this.handleChange} type="text" 
@@ -32,7 +41,7 @@ class Login extends React.Component{
                         value={this.state.password}/>
                     <button>Submit</button>
                 </form> 
-                <button>Create Account</button>
+                <button onClick={this.handleClick} >Create Account</button>
 
             </>
         )

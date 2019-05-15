@@ -1,11 +1,23 @@
 const initialState = {
-    events: [{id:1, name: "Korea 12/19"}, {id:2, name: "Kevin's Wedding"}]
+    events: [],
+    topics: [],
+    currentEvent: null
 }
-
-
 
 function reducer(state = initialState, action) {
     switch(action.type) {
+        case "GET_EVENTS":
+            return {
+                ...state, events: action.payload
+            }
+        case "GET_TOPICS":
+            return {
+                ...state, topics: action.payload
+            }
+        case "SET_EVENT":
+            return {
+                ...state, currentEvent: action.payload
+            }
         default: 
             return state
     }

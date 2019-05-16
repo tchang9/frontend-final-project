@@ -30,7 +30,7 @@ export const selectEvent = (eventId) => {
 
 export const fetchTopics = (eventId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/topics`, {
+        fetch(`http://localhost:3000/fetch-topics`, {
             method: 'POST',
             body: JSON.stringify({id: eventId}),
             headers:{

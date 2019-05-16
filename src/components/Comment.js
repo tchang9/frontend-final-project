@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Comment = () => {
+const Comment = ({comment}) => {
     return (
-        <p>I am a comment</p>
+        <>
+        <p>{comment.user.first_name}: {comment.comment}</p>
+        </>
     )
 }
 

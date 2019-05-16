@@ -13,9 +13,22 @@ class AddTopicForm extends React.Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const data = {...this.state, id: this.props.match.params.event}
+        fetch('http://localhost:3000/topics', {
+            method: 'POST', 
+            body: JSON.stringify(data),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        })
+    }
+
     render() {
+        console.log(this.props)
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 Topic Name
                 <input 
                     onChange={this.handleChange} type="text" 

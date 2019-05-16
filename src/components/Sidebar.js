@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import { setEvent } from '../actions'
+import { selectEvent } from '../actions'
 
 const Sidebar = (props) => {
-    
+
     const renderEvents = () => {
-        return props.events.map(event => {
-            return(
-                <div onClick={() => handleClick(event.id)} key={event.id}>
-                    <Link to={`/profile/events/${event.id}`}>
+        return Object.keys(props.events).map(id => {
+            const event = props.events[id]
+            return (
+                <div onClick={() => handleClick(id)} key={id}>
+                    <Link to={`/profile/events/${id}`}>
                         <button className="item">
                             {event.name}
                         </button>
@@ -20,7 +21,7 @@ const Sidebar = (props) => {
     }
 
     const handleClick = (eventId) => {
-        props.setEvent(eventId)
+        props.selectEvent(eventId)
     }
 
     return (
@@ -43,17 +44,8 @@ const Sidebar = (props) => {
 
 function mapStateToProps(state) {
     return {
-        events: state.events,
-        currentEvent: state.currentEvent
+        events: state.events
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        setEvent: (eventId) => {
-            dispatch(setEvent(eventId))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps, { selectEvent })(Sidebar)

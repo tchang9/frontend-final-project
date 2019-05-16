@@ -1,0 +1,3 @@
+export const FETCH_EVENTS = 'FETCH_EVENTS'
+export const FETCH_TOPICS = 'FETCH_TOPICS'
+export const SELECT_EVENT = 'SELECT_EVENT'

@@ -34,15 +34,15 @@ class TopicsContainer extends React.Component {
 
     renderTopics = () => {
         return this.props.topics.map(topic => {
-            return <Link key={topic.id} to={`/profile/events/${this.props.currentEvent}/topics/${topic.id}`}> <p onClick={() => this.handleClick(topic.id)} className="topicName">{topic.label}</p></Link>
+            return <Link key={topic.id} to={`topics/${topic.id}`}> <p onClick={() => this.handleClick(topic.id)} className="topicName">{topic.label}</p></Link>
         })
     }
 
     render() {
         return (
             <>
-                {this.renderTopics()}
-                <AddTopicButton />
+                {this.props.topics ? this.renderTopics() : "loading"}
+                <AddTopicButton /> 
             </>
         )
     }

@@ -1,9 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const AddTopicButton = () => {
+const AddTopicButton = (props) => {
     return (
-        <button>Add New Topic</button>
+        <Link to={`/profile/events/${props.currentEvent}/topics/add`}><button>Add New Topic</button></Link>
     )
 }
 
-export default AddTopicButton
+function mapStateToProps(state) {
+    return {
+        currentEvent: state.currentEvent
+    }
+}
+
+export default connect(mapStateToProps)(AddTopicButton)

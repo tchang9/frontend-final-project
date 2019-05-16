@@ -1,6 +1,7 @@
 const initialState = {
     events: [],
     topics: [],
+    comments: [],
     currentEvent: null
 }
 
@@ -17,6 +18,10 @@ function reducer(state = initialState, action) {
         case "SET_EVENT":
             return {
                 ...state, currentEvent: action.payload
+            }
+        case "GET_COMMENTS":
+            return {
+                ...state, comments: action.payload
             }
         default: 
             return state

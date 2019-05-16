@@ -23,7 +23,6 @@ const Sidebar = (props) => {
         props.setEvent(eventId)
     }
 
-    console.log(props.currentEvent)
     return (
         <div>
             <div>

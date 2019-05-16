@@ -11,8 +11,8 @@ const BodyContainer = () => {
     return (
         <> 
             <Switch>
-                <Route path='/profile/event1/topic1/add' component = {AddTopicForm} />
-                <Route path='/profile/event1/topic1' component = {TopicContainer} />
+                <Route path='/profile/events/:id/topics/add' component = {AddTopicForm} />
+                <Route path='/profile/events/:id/topics/:id' component = {TopicContainer} />
                 <Route path='/profile/event1/schedule/add' component = {AddActivityForm} />
                 <Route path='/profile/event1/schedule' component = {ScheduleContainer} />
                 <Route path='/profile/events/:id/topics' component = {TopicsContainer} />

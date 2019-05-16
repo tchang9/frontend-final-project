@@ -18,3 +18,10 @@ export function setEvent(event) {
         payload: event
     }
 }
+
+export function getComments(comments) {
+    return {
+        type: "GET_COMMENTS",
+        payload: comments
+    }
+}

@@ -2,33 +2,42 @@ import React from 'react'
 import Comment from '../components/Comment'
 import AddCommentForm from '../components/AddCommentForm'
 import { connect } from 'react-redux'
+import { fetchComments } from '../actions'
+
 
 // Shows ONE TOPIC for an event
-const TopicContainer = (props) => {
+// path='/profile/events/:event/topics/:topic'
+class TopicContainer extends React.Component {
 
-    const renderComments = () => {
-        return props.comments.map(comment => {
-            return <Comment key={comment.id} comment={comment}/> 
+    componentDidMount() {
+        const topicId = parseInt(this.props.match.params.topic)
+        this.props.fetchComments(topicId)
+    }
+
+    renderComments = () => {
+        return Object.keys(this.props.comments).map(id => {
+            return <Comment key={id} comment={this.props.comments[id]}/> 
         })
     }
-    
-    const topic = props.topics.find(topic => topic.id === parseInt(props.match.params.id))
 
-    return (
-        <>
-            <p>{topic.label}</p>
-            {renderComments()}
-            <AddCommentForm />
-        </>
-    )
+    
+    render() {
+        // const topic = this.props.topics[this.props.match.params.event]
+        return (
+            <>
+                {/* <p>{topic.label}</p> */}
+                {this.props.comments.comments ? null : this.renderComments()}
+                <AddCommentForm />
+            </>
+        )
+    }
 }
 
 function mapStateToProps(state) {
-    console.log("state", state)
     return {
+        topics: state.topics,
         comments: state.comments,
-        topics: state.topics
     }
 }
 
-export default connect(mapStateToProps)(TopicContainer)
+export default connect(mapStateToProps, { fetchComments } )(TopicContainer)

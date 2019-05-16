@@ -1,7 +1,9 @@
 import eventsReducer from './events'
 import topicsReducer from './topics'
+import commentsReducer from './comments'
 import { combineReducers } from 'redux'
-import activeEventIdReducer from './activeEventId';
+import activeEventIdReducer from './activeEventId'
+import activeTopicIdReducer from './activeTopicId'
 
 // function reducer(state = initialState, action) {
 //     switch(action.type) {
@@ -29,7 +31,9 @@ import activeEventIdReducer from './activeEventId';
 export default combineReducers({
     events: eventsReducer,
     topics: topicsReducer,
-    activeEventId: activeEventIdReducer
+    activeEventId: activeEventIdReducer,
+    comments: commentsReducer,
+    activeTopicId: activeTopicIdReducer
 })
 
 // events: {4: {event}, 5: {event} }

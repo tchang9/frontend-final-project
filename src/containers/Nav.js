@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Nav = (props) => {
@@ -18,4 +18,4 @@ function mapPropsToState(state) {
     }
 }
 
-export default connect(mapPropsToState)(Nav)
+export default connect(mapPropsToState)(withRouter(Nav))

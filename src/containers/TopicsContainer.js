@@ -1,40 +1,26 @@
 import React from 'react'
 import AddTopicButton from '../components/AddTopicButton'
-import AddTopicForm from '../components/AddTopicForm'
+// import AddTopicForm from '../components/AddTopicForm'
 import { connect } from 'react-redux'
-import { getTopics, getComments } from '../actions'
+import { fetchTopics, fetchComments, selectTopic } from '../actions'
 import { Link } from 'react-router-dom'
 
 // Shows all the Topics for an event
 class TopicsContainer extends React.Component {
 
     componentDidMount() {
-        fetch(`http://localhost:3000/topics`, {
-            method: 'POST',
-            body: JSON.stringify({id: this.props.match.params.id}),
-            headers:{
-              'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(this.props.getTopics)
+        this.props.fetchTopics(this.props.match.params.event)
     }
 
     handleClick = (topicId) => {
-        fetch(`http://localhost:3000/comments`, {
-            method: 'POST',
-            body: JSON.stringify({id: topicId}),
-            headers:{
-              'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(this.props.getComments)
+        this.props.fetchComments(topicId)
+        this.props.selectTopic(topicId)
     }
 
     renderTopics = () => {
-        return this.props.topics.map(topic => {
-            return <Link key={topic.id} to={`topics/${topic.id}`}> <p onClick={() => this.handleClick(topic.id)} className="topicName">{topic.label}</p></Link>
+        return Object.keys(this.props.topics).map(id => {
+            const topic = this.props.topics[id]
+            return <Link key={id} to={`topics/${id}`}> <p onClick={() => this.handleClick(id)} className="topicName">{topic.label}</p></Link>
         })
     }
 
@@ -48,22 +34,11 @@ class TopicsContainer extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        getTopics: (topics) => {
-            dispatch(getTopics(topics))
-        },
-        getComments: (comments) => {
-            dispatch(getComments(comments))
-        }
-    }
-}
 
 function mapStateToProps(state) {
     return {
         topics: state.topics,
-        currentEvent: state.currentEvent
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicsContainer)
+export default connect(mapStateToProps, { fetchTopics, fetchComments, selectTopic })(TopicsContainer)

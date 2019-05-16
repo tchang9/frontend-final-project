@@ -1,9 +1,7 @@
 import { FETCH_EVENTS } from '../constants/ActionTypes'
 
 
-const initialState = {
-    events: {}
-}
+const initialState = {}
 
 function eventsReducer(state = initialState, action) {
     switch (action.type) {

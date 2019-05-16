@@ -13,9 +13,15 @@ class AddTopicForm extends React.Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        
+    }
+
     render() {
+        console.log(this.props)
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 Topic Name
                 <input 
                     onChange={this.handleChange} type="text" 

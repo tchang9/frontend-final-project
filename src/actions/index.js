@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN } from "../constants/ActionTypes";
 
 export function getTopics(topics) {
     return {
@@ -66,4 +66,8 @@ export const fetchComments = (topicId) => {
 
 export const selectTopic = (topicId) => {
     return {type: SELECT_TOPIC, payload: topicId}
+}
+
+export const login = (user) => {
+    return {type: LOGIN, payload: user}
 }

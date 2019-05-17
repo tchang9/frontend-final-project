@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { login } from '../actions'
 
 class Login extends React.Component{
 
@@ -15,7 +17,23 @@ class Login extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.history.push('/profile')
+        fetch('http://localhost:3000/login', {
+            method: "POST", 
+            body: JSON.stringify(this.state),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.message){
+                alert(response.message)
+            } else {
+                this.props.login(response.user)
+                localStorage.setItem("token", response.token)
+                this.props.history.push('/profile')
+            }
+        })
     }
         
     handleClick = () => {
@@ -23,6 +41,7 @@ class Login extends React.Component{
     }
 
     render() {
+        console.log(this.props.hi)
         return (
             <>
                 <h1>Project Title</h1>
@@ -48,4 +67,10 @@ class Login extends React.Component{
     }
 }
 
-export default Login
+function mapStateToProps(state) {
+    return {
+        hi: state
+    }
+}
+
+export default connect(mapStateToProps, { login })(Login)

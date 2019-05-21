@@ -23,10 +23,14 @@ class AddTopicForm extends React.Component {
               'Content-Type': 'application/json'
             }
         })
+        .then(res => res.json())
+        .then(res => {
+            const topicId = res.id
+            this.props.history.push(`${topicId}`)
+        })
     }
 
     render() {
-        console.log(this.props)
         return (
             <form onSubmit={this.handleSubmit}>
                 Topic Name

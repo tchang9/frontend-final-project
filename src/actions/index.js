@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT } from "../constants/ActionTypes";
 
 export function getTopics(topics) {
     return {
@@ -46,7 +46,7 @@ export const fetchTopics = (eventId) => {
 
 export const fetchComments = (topicId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/comments`, {
+        fetch(`http://localhost:3000/fetch-comments`, {
             method: 'POST',
             body: JSON.stringify({id: topicId}),
             headers:{
@@ -55,6 +55,7 @@ export const fetchComments = (topicId) => {
         })
         .then(res => res.json())
         .then(comments => {
+            console.log(comments)
             const objComments = {}
             comments.forEach(comment => {
                 objComments[comment.id] = comment
@@ -70,4 +71,8 @@ export const selectTopic = (topicId) => {
 
 export const login = (user) => {
     return {type: LOGIN, payload: user}
+}
+
+export const addComment = (comment) => {
+    return {type: ADD_COMMENT, payload: comment}
 }

@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { addComment } from '../actions'
+
 
 class AddCommentForm extends React.Component {
 
@@ -12,9 +15,26 @@ class AddCommentForm extends React.Component {
         })
     }
 
+    handleSubmit = (e) => {
+        const topicId = this.props.topicId
+        const data = {...this.state, topicId}
+        e.preventDefault()
+        fetch('http://localhost:3000/comments', {
+            method: 'POST', 
+            body: JSON.stringify(data),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(comment => {
+            this.props.addComment(comment)
+        })
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit} >
             Comment:
             <input 
                 onChange={this.handleChange}type="text" 
@@ -26,4 +46,8 @@ class AddCommentForm extends React.Component {
     }
 }
 
-export default AddCommentForm
+function mapStateToProps (state) {
+    return state
+}
+
+export default connect(mapStateToProps, {addComment})(AddCommentForm)

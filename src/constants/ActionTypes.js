@@ -5,3 +5,4 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const SELECT_TOPIC = 'SELECT_TOPIC'
 export const LOGIN = 'LOGIN'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const FETCH_ACTIVITIES = `FETCH_ACTIVITIES`

@@ -5,6 +5,7 @@ import { combineReducers } from 'redux'
 import activeEventIdReducer from './activeEventId'
 import activeTopicIdReducer from './activeTopicId'
 import loginReducer from './currentUser'
+import activitiesReducer from './activities'
 
 // function reducer(state = initialState, action) {
 //     switch(action.type) {
@@ -35,7 +36,8 @@ export default combineReducers({
     activeEventId: activeEventIdReducer,
     comments: commentsReducer,
     activeTopicId: activeTopicIdReducer,
-    currentUser: loginReducer
+    currentUser: loginReducer,
+    activities: activitiesReducer
 })
 
 // events: {4: {event}, 5: {event} }

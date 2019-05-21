@@ -22,7 +22,6 @@ class TopicContainer extends React.Component {
 
     
     render() {
-        console.log(this.props)
         // const topic = this.props.topics[this.props.match.params.event]
         return (
             <>

@@ -1,12 +1,19 @@
 import React from 'react'
 import Activity from './Activity'
+import v4 from 'uuid'
 
-const Day = () => {
+
+const Day = (props) => {
+
+    const renderActivities = () => {
+        return Object.keys(props.activities).map(id => {
+            return <Activity key={ v4() } activity={props.activities[id]}/>
+        })
+    }
     return (
         <>
-            <p>October 9th</p>
-            <Activity />
-            <Activity />
+            <h1>{props.date}</h1>
+            {renderActivities()}
         </>
     )
 }

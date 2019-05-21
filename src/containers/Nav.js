@@ -6,7 +6,7 @@ const Nav = (props) => {
     return (
         <>
             <p className="topic"><Link to={`/profile/events/${props.activeEventId}/topics`}>Topic</Link></p>
-            <p className="schedule"><Link to='/profile/event1/schedule'>Schedule</Link></p>
+            <p className="schedule"><Link to={`/profile/events/${props.activeEventId}/schedule`}>Schedule</Link></p>
             <p className="attendees">Attendees</p>
         </>
     )

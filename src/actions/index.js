@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES } from "../constants/ActionTypes";
 
 export function getTopics(topics) {
     return {
@@ -55,7 +55,6 @@ export const fetchComments = (topicId) => {
         })
         .then(res => res.json())
         .then(comments => {
-            console.log(comments)
             const objComments = {}
             comments.forEach(comment => {
                 objComments[comment.id] = comment
@@ -75,4 +74,25 @@ export const login = (user) => {
 
 export const addComment = (comment) => {
     return {type: ADD_COMMENT, payload: comment}
+}
+
+export const fetchActivities = (eventId) => {
+    console.log(eventId)
+    return (dispatch) => {
+        fetch(`http://localhost:3000/fetch-activities`, {
+            method: 'POST',
+            body: JSON.stringify({id: eventId}),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(activities => {
+            const activitiesObj = {}
+            activities.forEach(activity => {
+                activitiesObj[activity.id] = activity
+            })
+            dispatch({type: FETCH_ACTIVITIES, payload: activitiesObj})
+        })
+    }
 }

@@ -22,7 +22,6 @@ class ProfileContainer extends React.Component {
 			.then(res => res.json())
 			.then((response) => {
 				if (response.errors) {
-                    console.log("hi")
                     this.props.history.push('/login')
 				} else {
                     this.props.login(response)
@@ -33,7 +32,6 @@ class ProfileContainer extends React.Component {
     }
     
     render() {
-        console.log(this.props)
         return (
             <div className="profileContainer">
                <div className="sidebar">

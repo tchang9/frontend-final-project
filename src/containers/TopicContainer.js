@@ -22,12 +22,13 @@ class TopicContainer extends React.Component {
 
     
     render() {
+        console.log(this.props)
         // const topic = this.props.topics[this.props.match.params.event]
         return (
             <>
                 {/* <p>{topic.label}</p> */}
                 {this.props.comments.comments ? null : this.renderComments()}
-                <AddCommentForm />
+                <AddCommentForm topicId={parseInt(this.props.match.params.topic)}/>
             </>
         )
     }

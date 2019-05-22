@@ -5,12 +5,14 @@ import ScheduleContainer from './ScheduleContainer'
 import TopicsContainer from './TopicsContainer'
 import AddTopicForm from '../components/AddTopicForm'
 import AddActivityForm from '../components/AddActivityForm'
+import EditEventForm from '../components/EditEventForm'
 
 
 const BodyContainer = () => {
     return (
         <> 
             <Switch>
+                <Route path='/profile/events/edit/:event' component = {EditEventForm} />
                 <Route path='/profile/events/:event/topics/add' component = {AddTopicForm} />
                 <Route path='/profile/events/:event/topics/:topic' component = {TopicContainer} />
                 <Route path='/profile/events/:event/schedule/add' component = {AddActivityForm} />

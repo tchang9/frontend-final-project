@@ -1,5 +1,5 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES } from "../constants/ActionTypes";
-import { get } from '../adapters'
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT } from "../constants/ActionTypes";
+import { get, patch } from '../adapters'
 
 export function getTopics(topics) {
     return {
@@ -93,5 +93,15 @@ export const fetchActivities = (eventId) => {
             })
             dispatch({type: FETCH_ACTIVITIES, payload: activitiesObj})
         })
+    }
+}
+
+export const editEvent = (event) => {
+    return (dispatch) => {
+        patch(`http://localhost:3000/events/${event.id}`, event)
+        .then(event => {
+            dispatch({type: EDIT_EVENT, payload: event})
+        })
+
     }
 }

@@ -27,6 +27,8 @@ class ProfileContainer extends React.Component {
     }
     
     render() {
+        console.log("look", this.props.events)
+        console.log(this.props.activeEventId)
         if (Object.keys(this.props.events).length > 0 && !this.props.activeEventId) {
             this.props.selectEvent(Object.keys(this.props.events)[0])
         }

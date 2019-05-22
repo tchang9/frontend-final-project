@@ -7,3 +7,4 @@ export const LOGIN = 'LOGIN'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const FETCH_ACTIVITIES = `FETCH_ACTIVITIES`
 export const EDIT_EVENT = 'EDIT_EVENT'
+export const ADD_EVENT = 'ADD_EVENT'

@@ -20,12 +20,17 @@ class EditEventForm extends React.Component{
     componentDidMount() {
         const eventId = this.props.match.params.event
         const event = this.props.events[eventId]
-        this.setState({
+        try { 
+            this.setState({
             name: event.name,
             startDate: event.start_date,
             endDate: event.end_date,
             location: event.location,
-        })
+            })
+        }
+        catch(error) {
+            this.props.history.push('/profile/events')
+        }
     }
 
     handleSubmit = (e) => {
@@ -33,10 +38,11 @@ class EditEventForm extends React.Component{
         const eventId = this.props.match.params.event
         const event = {...this.state, id:eventId}
         this.props.editEvent(event)
+        // TODO: AFTER SETTING STATE, PUSH
+        this.props.history.push('/profile/events')
     }
 
     render() {
-        console.log(this.props)
         return (
             <>
                 <h1>Edit Event</h1>
@@ -70,9 +76,7 @@ class EditEventForm extends React.Component{
 }
 
 function mapStateToProps(state) {
-    // debugger
     return {
-        // state: state
         events: state.events
     }
 }

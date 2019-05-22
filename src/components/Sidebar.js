@@ -24,8 +24,6 @@ const Sidebar = (props) => {
         props.selectEvent(eventId)
     }
 
-    console.log(props.events)
-
     return (
         <div>
             <div>

@@ -3,6 +3,7 @@ import Day from '../components/Day'
 import { connect } from 'react-redux'
 import { fetchActivities } from '../actions'
 import v4 from 'uuid'
+import AddActivityButton from '../components/AddActivityButton'
 
 
 class ScheduleContainer extends React.Component {
@@ -13,17 +14,15 @@ class ScheduleContainer extends React.Component {
     }
 
     daysObject = () => {
-        const daysObj = {}
-        Object.keys(this.props.activities).forEach(id => {
-            const day = this.props.activities[id].date
-            const activity = {[id]: this.props.activities[id]}
-            if (daysObj[day]) {
-                return daysObj[day] = {...daysObj[day], [id]: this.props.activities[id]}
-            } else {
-                return daysObj[day] = activity
-            }
-        })
-        return daysObj
+        return Object.entries(this.props.activities).reduce((acc, [k, v]) => {
+            const day = this.props.activities[k].date
+            acc[day] = {...acc[day], [k]: v}
+            return acc
+
+            // const day = this.props.activities[k].date
+            // const {[day]: dayActivities, ...newAcc} = acc
+            // return {...newAcc, [day]: {...dayActivities, [k]: v}}
+        }, {})
     }
 
     renderDays = () => {
@@ -41,6 +40,8 @@ class ScheduleContainer extends React.Component {
             <>
                 <p>Schedule</p>
                 {this.renderDays()}
+                <AddActivityButton />
+
             </>
         )
     }

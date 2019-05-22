@@ -7,4 +7,4 @@ const AddTopicButton = () => {
     )
 }
 
-export default (AddTopicButton)
+export default AddTopicButton

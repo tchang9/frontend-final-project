@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Activity = (props) => {
+const Activity = ({activity}) => {
     return (
         <>
-            <h3>{props.activity.name}</h3>
-            <p>{props.activity.description}</p>
-            <p>{props.activity.start_time} - {props.activity.end_time}</p>
+            <h3>{activity.name}</h3>
+            <p>{activity.description}</p>
+            <p>{activity.start_time} - {activity.end_time}</p>
         </>
     )
 }

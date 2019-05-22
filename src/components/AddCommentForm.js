@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../actions'
+import {post} from '../adapters'
 
 
 class AddCommentForm extends React.Component {
@@ -19,20 +20,18 @@ class AddCommentForm extends React.Component {
         const topicId = this.props.topicId
         const data = {...this.state, topicId}
         e.preventDefault()
-        fetch('http://localhost:3000/comments', {
-            method: 'POST', 
-            body: JSON.stringify(data),
-            headers:{
-              'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
+        post('http://localhost:3000/comments', data)
         .then(comment => {
             this.props.addComment(comment)
+            this.setState({
+                comment: ''
+            })
         })
+        
     }
 
     render() {
+        console.log(this.props)
         return (
             <form onSubmit={this.handleSubmit} >
             Comment:

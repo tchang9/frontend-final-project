@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, EDIT_EVENT } from '../constants/ActionTypes'
+import { FETCH_EVENTS, EDIT_EVENT, ADD_EVENT } from '../constants/ActionTypes'
 
 
 const initialState = {}
@@ -8,8 +8,9 @@ function eventsReducer(state = initialState, action) {
         case FETCH_EVENTS:
             return action.payload
         case EDIT_EVENT:
-            const event = action.payload
-            return {...state,  [event.id]: event}
+            return {...state, [action.payload.id]: action.payload}
+        case ADD_EVENT:
+            return {...state, [action.payload.id]: action.payload}
         default:
             return state
     }

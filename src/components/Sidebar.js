@@ -24,6 +24,8 @@ const Sidebar = (props) => {
         props.selectEvent(eventId)
     }
 
+    console.log(props.events)
+
     return (
         <div>
             <div>
@@ -34,9 +36,12 @@ const Sidebar = (props) => {
             </div>
             {renderEvents()}
             <div>
+            <Link to={`/profile/events/add`}>
                 <button className="item">
                     Add New Event
                 </button>
+            </Link>
+
             </div>
         </div>
     )

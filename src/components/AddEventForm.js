@@ -1,9 +1,12 @@
 import React from 'react'
+import {addEvent} from '../actions'
+import {connect} from 'react-redux'
 
 class AddEventForm extends React.Component{
     state = {
         name: '',
-        date: '',
+        startDate: '',
+        endDate: '',
         location: ''
     }
 
@@ -13,22 +16,33 @@ class AddEventForm extends React.Component{
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.addEvent(this.state)
+        this.props.history.push('/profile/events')
+    }
+
     render() {
         return (
             <>
                 <h1>Add Event</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     Name
                     <input 
                         onChange={this.handleChange} type="text" 
                         name="name" 
                         value={this.state.name}
                     />
-                    Date:
+                    Start Date:
                     <input 
-                        onChange={this.handleChange}type="text" 
-                        name="date" 
-                        value={this.state.date}/>
+                        onChange={this.handleChange}type="date" 
+                        name="startDate" 
+                        value={this.state.startDate}/>
+                    End Date:
+                    <input 
+                        onChange={this.handleChange}type="date" 
+                        name="endDate" 
+                        value={this.state.endDate}/>
                     Location:
                     <input 
                         onChange={this.handleChange}type="text" 
@@ -43,4 +57,4 @@ class AddEventForm extends React.Component{
     }
 }
 
-export default AddEventForm
+export default connect(null, {addEvent} )(AddEventForm)

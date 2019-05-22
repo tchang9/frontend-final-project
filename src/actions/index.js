@@ -1,5 +1,7 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT } from "../constants/ActionTypes";
-import { get, patch } from '../adapters'
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT } from "../constants/ActionTypes";
+import { get, patch, post } from '../adapters'
+import { withRouter } from 'react-router'
+import React from 'react'
 
 export function getTopics(topics) {
     return {
@@ -103,5 +105,14 @@ export const editEvent = (event) => {
             dispatch({type: EDIT_EVENT, payload: event})
         })
 
+    }
+}
+
+export const addEvent = (event) => {
+    return (dispatch) => {
+        post(`http://localhost:3000/events`, event)
+        .then(event => {
+            dispatch({type: ADD_EVENT, payload: event})
+        })
     }
 }

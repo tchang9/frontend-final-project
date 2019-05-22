@@ -27,7 +27,7 @@ const Sidebar = (props) => {
     return (
         <div>
             <div>
-                <h3>Title</h3>
+                <h3>NAME OF APP</h3>
             </div>
             <div>
                 <h4>Events</h4>

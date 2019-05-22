@@ -1,4 +1,5 @@
 import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES } from "../constants/ActionTypes";
+import { get } from '../adapters'
 
 export function getTopics(topics) {
     return {
@@ -16,8 +17,7 @@ export function getComments(comments) {
 
 export const fetchEvents = () => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/events`)
-        .then(res => res.json())
+        get(`http://localhost:3000/events`)
         .then(events => {
             dispatch({type: FETCH_EVENTS, payload: events})
         })

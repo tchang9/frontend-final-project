@@ -41,7 +41,6 @@ class Login extends React.Component{
     }
 
     render() {
-        console.log(this.props.hi)
         return (
             <>
                 <h1>Project Title</h1>
@@ -67,10 +66,4 @@ class Login extends React.Component{
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        hi: state
-    }
-}
-
-export default connect(mapStateToProps, { login })(Login)
+export default connect(null, { login })(Login)

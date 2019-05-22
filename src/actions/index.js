@@ -77,7 +77,6 @@ export const addComment = (comment) => {
 }
 
 export const fetchActivities = (eventId) => {
-    console.log(eventId)
     return (dispatch) => {
         fetch(`http://localhost:3000/fetch-activities`, {
             method: 'POST',

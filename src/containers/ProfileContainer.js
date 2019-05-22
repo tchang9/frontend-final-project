@@ -4,22 +4,17 @@ import Header from '../components/Header'
 import Nav from '../containers/Nav'
 import BodyContainer from '../containers/BodyContainer'
 import { connect } from 'react-redux'
-import { fetchEvents, login } from '../actions'
+import { fetchEvents, login, selectEvent } from '../actions'
 import withAuth from "../HOC/withAuth"
+import { get } from '../adapters'
 
 
 class ProfileContainer extends React.Component {
 
     componentDidMount(){
 		const token = localStorage.getItem("token")
-
 		if (token){
-			fetch("http://localhost:3000/auto_login", {
-				headers: {
-					"Authorization": token
-				}
-			})
-			.then(res => res.json())
+            get("http://localhost:3000/auto_login")
 			.then((response) => {
 				if (response.errors) {
                     this.props.history.push('/login')
@@ -32,6 +27,9 @@ class ProfileContainer extends React.Component {
     }
     
     render() {
+        if (Object.keys(this.props.events).length > 0 && !this.props.activeEventId) {
+            this.props.selectEvent(Object.keys(this.props.events)[0])
+        }
         return (
             <div className="profileContainer">
                <div className="sidebar">
@@ -52,7 +50,10 @@ class ProfileContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return state
+    return {
+        events: state.events,
+        activeEventId: state.activeEventId
+    }
 }
 
-export default connect(mapStateToProps, { fetchEvents, login } )(withAuth(ProfileContainer))
+export default connect(mapStateToProps, { fetchEvents, login, selectEvent } )(withAuth(ProfileContainer))

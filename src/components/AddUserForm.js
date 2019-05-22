@@ -1,4 +1,5 @@
 import React from 'react'
+import {post} from '../adapters'
 
 class AddUserForm extends React.Component{
     state = {
@@ -17,7 +18,13 @@ class AddUserForm extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.history.push('/add-event')
+        if (this.state.password === this.state.confirmPassword) {
+            post('http://localhost:3000/users', this.state)
+            .then(console.log)
+            this.props.history.push('/add-event')
+        } else {
+            alert("passwords must be the same")
+        }
     }
 
     render() {

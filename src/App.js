@@ -5,6 +5,7 @@ import AddUserForm from './components/AddUserForm'
 import AddEventForm from './components/AddEventForm'
 import { Route } from 'react-router-dom'
 import ProfileContainer from './containers/ProfileContainer'
+import JoinEvent from './components/JoinEvent';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
         <Route path='/signup' component = {AddUserForm} />
         <Route path='/add-event' component = {AddEventForm} />
         <Route path='/profile' component = {ProfileContainer} />
+        <Route path='/join-event/:eventId' component = {JoinEvent} />
       </>
     )
   }

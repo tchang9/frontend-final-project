@@ -1,5 +1,6 @@
 import React from 'react'
 import {post} from '../adapters'
+import queryString from 'query-string'
 
 class AddUserForm extends React.Component{
     state = {
@@ -18,16 +19,29 @@ class AddUserForm extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
+        
         if (this.state.password === this.state.confirmPassword) {
             post('http://localhost:3000/users', this.state)
-            .then(console.log)
-            this.props.history.push('/add-event')
+            .then(response => {
+                localStorage.setItem("token", response.token)
+                if (this.props.location.search === "") {
+                    this.props.history.push('/add-event')
+                } else {
+                    const searchParams = queryString.parse(this.props.location.search)
+                    console.log(searchParams.redirect)
+                    post(`http://localhost:3000/${searchParams.redirect}`)
+                    .then(() => {
+                        this.props.history.push(`/profile/events/`)
+                    })
+                }
+            })
         } else {
             alert("passwords must be the same")
         }
     }
 
     render() {
+        console.log(this.props)
         return (
             <>
                 <h1>Create Your Account</h1>

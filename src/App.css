@@ -116,3 +116,7 @@
 .attendees {
   grid-area: attendees
 }
+
+.activity:hover {
+  background-color: lightcyan
+}

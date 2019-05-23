@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY } from "../constants/ActionTypes";
 import { get, patch, post } from '../adapters'
 
 export function getTopics(topics) {
@@ -117,4 +117,8 @@ export const addEvent = (event) => {
             dispatch({type: ADD_EVENT, payload: event})
         })
     }
+}
+
+export const editActivity = (activity) => {
+    return {type: EDIT_ACTIVITY, payload: activity}
 }

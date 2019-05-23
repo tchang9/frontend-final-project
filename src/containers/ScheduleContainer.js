@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchActivities } from '../actions'
 import v4 from 'uuid'
 import AddActivityButton from '../components/AddActivityButton'
+import { Card, CardGroup } from 'react-bootstrap'
 
 
 class ScheduleContainer extends React.Component {
@@ -39,9 +40,10 @@ class ScheduleContainer extends React.Component {
         return (
             <>
                 <p>Schedule</p>
-                {this.renderDays()}
                 <AddActivityButton />
-
+                <CardGroup>
+                    {this.renderDays()}
+                </CardGroup>
             </>
         )
     }

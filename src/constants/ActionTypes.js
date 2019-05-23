@@ -4,6 +4,7 @@ export const SELECT_EVENT = 'SELECT_EVENT'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const SELECT_TOPIC = 'SELECT_TOPIC'
 export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const FETCH_ACTIVITIES = `FETCH_ACTIVITIES`
 export const EDIT_EVENT = 'EDIT_EVENT'

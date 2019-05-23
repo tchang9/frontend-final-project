@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT } from "../constants/ActionTypes";
 import { get, patch, post } from '../adapters'
 
 export function getTopics(topics) {
@@ -70,6 +70,10 @@ export const selectTopic = (topicId) => {
 
 export const login = (user) => {
     return {type: LOGIN, payload: user}
+}
+
+export const logout = () => {
+    return {type: LOGOUT}
 }
 
 export const addComment = (comment) => {

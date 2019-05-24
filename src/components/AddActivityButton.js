@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const AddActivityButton = () => {
+const AddActivityButton = (props) => {
     return (
-        <Link to={`schedule/add`}><button>Add New Activity</button></Link>
+        <button onClick={props.addactivity}>Add New Activity</button>
     )
 }
 

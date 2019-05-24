@@ -44,13 +44,13 @@ class Day extends React.Component {
 
     render () {
         let modalClose = () => this.setState({ modalShow: false });
-        let editActivity = () => this.setState({editModalShow: true, modalShow: false })
+        let editActivity = () => this.setState({editModalShow: true, modalShow: false });
         let editModalClose = () => this.setState({ editModalShow: false });
         return (
             <>
                 <Card>
                     <Card.Body>
-                    <Card.Title>{moment(this.props.date).format('MMMM Do YYYY')}</Card.Title>
+                    <Card.Title>{moment(this.props.date).format('LL')}</Card.Title>
                     {this.renderActivities()}
                     {this.state.modalShow ? 
                     <MyVerticallyCenteredModal

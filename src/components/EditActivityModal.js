@@ -34,18 +34,18 @@ class EditActivityModal extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.props)
         const body = {...this.state, eventId: this.props.activity.event_id}
         
         patch(`http://localhost:3000/activities/${this.props.activity.id}`, body)
         .then( (response) => {
-            this.props.editActivity(response)
             this.props.onHide()
+            this.props.editActivity(response)
         })
     }
 
     render() {
       return (
+         
         <Modal
           {...this.props}
           size="lg"
@@ -87,7 +87,7 @@ class EditActivityModal extends React.Component {
                         type="text" 
                         name="startTime" 
                         value={this.state.startTime}
-                        placeholder="Enter Activity Start Name"
+                        placeholder="Enter Activity Start Time"
                     />
                 </Form.Group>
 
@@ -98,7 +98,7 @@ class EditActivityModal extends React.Component {
                         type="text" 
                         name="endTime" 
                         value={this.state.endTime}
-                        placeholder="Enter Activity End Name"
+                        placeholder="Enter Activity End Time"
                     />
                 </Form.Group>
 
@@ -121,6 +121,7 @@ class EditActivityModal extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
+        
       )
     }
   }

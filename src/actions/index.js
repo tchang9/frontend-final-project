@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY } from "../constants/ActionTypes";
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY, ADD_ACTIVITY, FETCH_EVENT_USERS } from "../constants/ActionTypes";
 import { get, patch, post } from '../adapters'
 
 export function getTopics(topics) {
@@ -121,4 +121,17 @@ export const addEvent = (event) => {
 
 export const editActivity = (activity) => {
     return {type: EDIT_ACTIVITY, payload: activity}
+}
+
+export const addactivity = (activity) => {
+    return {type: ADD_ACTIVITY, payload: activity}
+}
+
+export const fetchEventUsers = (eventId) => {
+    return (dispatch) => {
+        post(`http://localhost:3000/fetch-event-users`, eventId)
+        .then(users => {
+            dispatch({type: FETCH_EVENT_USERS, payload: users})
+        })
+    }
 }

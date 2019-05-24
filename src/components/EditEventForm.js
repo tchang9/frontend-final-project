@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { editEvent } from '../actions'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 
 class EditEventForm extends React.Component{
@@ -18,7 +21,7 @@ class EditEventForm extends React.Component{
     }
 
     componentDidMount() {
-        const eventId = this.props.match.params.event
+        const eventId = this.props.eventid
         const event = this.props.events[eventId]
         try { 
             this.setState({
@@ -29,48 +32,84 @@ class EditEventForm extends React.Component{
             })
         }
         catch(error) {
-            this.props.history.push('/profile/events')
+            // this.props.history.push('/profile/events')
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const eventId = this.props.match.params.event
+        const eventId = this.props.eventid
         const event = {...this.state, id:eventId}
         this.props.editEvent(event)
-        // TODO: AFTER SETTING STATE, PUSH
-        this.props.history.push('/profile/events')
+        this.props.onHide()
     }
 
     render() {
         return (
-            <>
-                <h1>Edit Event</h1>
-                <form onSubmit={this.handleSubmit}>
-                    Name
-                    <input 
-                        onChange={this.handleChange} type="text" 
-                        name="name" 
-                        value={this.state.name}
-                    />
-                    Start Date:
-                    <input 
-                        onChange={this.handleChange}type="date" 
-                        name="startDate" 
-                        value={this.state.startDate}/>
-                    End Date:
-                    <input 
-                        onChange={this.handleChange}type="date" 
-                        name="endDate" 
-                        value={this.state.endDate}/>
-                    Location:
-                    <input 
-                        onChange={this.handleChange}type="text" 
-                        name="location" 
-                        value={this.state.location}/>
-                    <button>Submit</button>
-                </form> 
-            </>
+            <Modal
+                {...this.props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                    Edit Event
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={this.handleSubmit} >
+                        <Form.Group >
+                            <Form.Label >Event Name</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                name="name" 
+                                type="text" 
+                                placeholder="Enter Event Name"
+                                value={this.state.name} />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Start Date</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="date" 
+                                name="startDate" 
+                                value={this.state.startDate}
+                                placeholder="Enter Event Start Date"
+                            />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >End Date</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="text" 
+                                name="endDate" 
+                                value={this.state.endDate}
+                                placeholder="Enter Event End Date"
+                            />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Location</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="text" 
+                                name="location" 
+                                value={this.state.location}
+                                placeholder="Enter Activity Location"
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button onClick={this.props.onHide}>Close</Button> */}
+                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                            Submit
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         )
     }
 }

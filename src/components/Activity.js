@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
@@ -25,6 +24,11 @@ import Button from 'react-bootstrap/Button'
 // export default Activity
 
 class MyVerticallyCenteredModal extends React.Component {
+
+    handleClick = () => {
+        this.props.editActivity()
+    }
+
     render() {
       return (
         <Modal
@@ -44,7 +48,7 @@ class MyVerticallyCenteredModal extends React.Component {
             <p>{this.props.activity.description}</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-info" onClick={this.props.editActivity}>Edit</Button>
+            <Button variant="outline-info" onClick={this.handleClick}>Edit</Button>
             <Button variant="outline-danger" onClick={this.props.onHide}>Delete</Button>
             {/* <Button onClick={this.props.onHide}>Close</Button> */}
           </Modal.Footer>

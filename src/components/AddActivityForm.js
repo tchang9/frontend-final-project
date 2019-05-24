@@ -1,6 +1,10 @@
 import React from 'react'
-import {post, patch} from '../adapters'
-import { connect } from 'react-redux'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import { post } from '../adapters'
+import {addactivity} from '../actions'
+import {connect} from 'react-redux'
 
 class AddActivityForm extends React.Component {
 
@@ -20,86 +24,94 @@ class AddActivityForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const eventId = this.props.match.params.event
-        const activityId = this.props.match.params.activity
-        const body = {...this.state, eventId: eventId}
-        if (activityId){
-            patch(`http://localhost:3000/activities/${activityId}`, body)
-            .then( () => {
-                this.props.history.push(`/profile/events/${eventId}/schedule`)
-            })
-        } else {
-            post(`http://localhost:3000/activities`, body)
-            .then( () => {
-                this.props.history.push(`/profile/events/${eventId}/schedule`)
-            })
-        }
-    }
-
-    componentDidMount() {
-        if (this.props.match.params.activity && Object.keys(this.props.activities).length !== 0) {
-            const activityId = this.props.match.params.activity
-            this.setState({
-                startTime: this.props.activities[activityId].start_time,
-                endTime: this.props.activities[activityId].end_time,
-                date: this.props.activities[activityId].date, 
-                name: this.props.activities[activityId].name,
-                description: this.props.activities[activityId].description
-            })
-        }
+        const body = {...this.state, eventId: this.props.eventid}
+        
+        post(`http://localhost:3000/activities`, body)
+        .then( (response) => {
+            this.props.onHide()
+            this.props.addactivity(response)
+        })
     }
 
     render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-            Start Time:
-            <br></br>
-            <input 
-                onChange={this.handleChange} type="text" 
-                name="startTime" 
-                value={this.state.startTime}
-            />
-            <br></br>
-            End Time:
-            <br></br>
-            <input 
-                onChange={this.handleChange} type="text" 
-                name="endTime" 
-                value={this.state.endTime}
-            />
-            <br></br>
-            Date:
-            <br></br>
-            <input 
-                onChange={this.handleChange}type="date" 
-                name="date" 
-                value={this.state.date}/>
-            
-            <br></br>
-            Name of Activity:
-            <br></br>
-            <input 
-                onChange={this.handleChange}type="text" 
-                name="name" 
-                value={this.state.name}/>
-            <br></br>
-            Description:
-            <br></br>
-            <input 
-                onChange={this.handleChange}type="text" 
-                name="description" 
-                value={this.state.description}/>
-            <button>Submit</button>
-        </form> 
-        )
-    }
-    
-}
+      return (
+        <Modal
+          {...this.props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Add Activity
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={this.handleSubmit} >
+                <Form.Group >
+                    <Form.Label >Activity Name</Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange} 
+                        name="name" 
+                        type="text" 
+                        placeholder="Enter Activity Name"
+                        value={this.state.name} />
+                </Form.Group>
 
-function mapStateToProps(state) {
-    return {
-        activities: state.activities
-    }
-}
+                <Form.Group >
+                    <Form.Label >Date</Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange} 
+                        type="date" 
+                        name="date" 
+                        value={this.state.date}
+                        placeholder="Enter Activity Date"
+                    />
+                </Form.Group>
 
-export default connect(mapStateToProps)(AddActivityForm)
+                <Form.Group >
+                    <Form.Label >Start Time</Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange} 
+                        type="text" 
+                        name="startTime" 
+                        value={this.state.startTime}
+                        placeholder="Enter Activity Start Time"
+                    />
+                </Form.Group>
+
+                <Form.Group >
+                    <Form.Label >End Time</Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange} 
+                        type="text" 
+                        name="endTime" 
+                        value={this.state.endTime}
+                        placeholder="Enter Activity End Time"
+                    />
+                </Form.Group>
+
+                <Form.Group >
+                    <Form.Label >Description</Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange} 
+                        type="textarea" 
+                        name="description" 
+                        value={this.state.description}
+                        placeholder="Enter Activity description"
+                    />
+                </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            {/* <Button onClick={this.props.onHide}>Close</Button> */}
+            <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                    Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )
+    }
+  }
+
+export default connect(null, {addactivity})(AddActivityForm)

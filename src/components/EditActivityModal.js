@@ -2,11 +2,11 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { post } from '../adapters'
-import {addactivity} from '../actions'
+import { patch } from '../adapters'
+import {editActivity} from '../actions'
 import {connect} from 'react-redux'
 
-class AddActivityForm extends React.Component {
+class EditActivityModal extends React.Component {
 
     state = {
         startTime: '',
@@ -14,6 +14,16 @@ class AddActivityForm extends React.Component {
         date: '', 
         name: '',
         description: ''
+    }
+
+    componentDidMount() {
+        this.setState({
+            startTime: this.props.activity.start_time,
+            endTime: this.props.activity.end_time,
+            date: this.props.activity.date, 
+            name: this.props.activity.name,
+            description: this.props.activity.description
+        })
     }
 
     handleChange = (e) => {
@@ -24,17 +34,18 @@ class AddActivityForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const body = {...this.state, eventId: this.props.eventid}
+        const body = {...this.state, eventId: this.props.activity.event_id}
         
-        post(`http://localhost:3000/activities`, body)
+        patch(`http://localhost:3000/activities/${this.props.activity.id}`, body)
         .then( (response) => {
             this.props.onHide()
-            this.props.addactivity(response)
+            this.props.editActivity(response)
         })
     }
 
     render() {
       return (
+         
         <Modal
           {...this.props}
           size="lg"
@@ -43,7 +54,7 @@ class AddActivityForm extends React.Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Add Activity
+              Edit Activity
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -110,8 +121,9 @@ class AddActivityForm extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
+        
       )
     }
   }
 
-export default connect(null, {addactivity})(AddActivityForm)
+export default connect(null, {editActivity})(EditActivityModal)

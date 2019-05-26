@@ -66,38 +66,50 @@
   display: grid;
   grid-template-areas: "sidebar header"
                       "sidebar nav"
+                      "sidebar nav"
+                      "sidebar bodycontainer"
                       "sidebar bodycontainer";
 }
 .sidebar {
   grid-area: sidebar;
-  background-color: coral
 }
 .header {
   grid-area: header;
   display: grid;
-  background-color: burlywood;
-  grid-template-areas: "eventname eventdate eventlocation editevent user"
+  grid-template-areas: 
+  "eventname editevent user"
+  "eventdate null null"
+  "eventlocation null null"
 }
 .nav {
   grid-area: nav;
   display: grid;
-  background-color: darkkhaki;
+
   grid-template-areas: "topic schedule attendees"
 }
 .bodyContainer {
   grid-area: bodycontainer;
-  background-color: rosybrown
 }
 
 /* Header Component CSS */
+.jumbotron {
+  display: grid;
+  grid-template-areas: 
+    "eventname editevent user"
+    "eventdate null null"
+    "eventlocation null null"
+}
 .eventName {
-  grid-area: eventname
+  grid-area: eventname;
+  text-align: center
 }
 .eventDate {
-  grid-area: eventdate
+  grid-area: eventdate;
+  text-align: center
 }
 .eventLocation {
-  grid-area: eventlocation
+  grid-area: eventlocation;
+  text-align: center
 }
 .editEvent {
   grid-area: editevent
@@ -115,4 +127,28 @@
 }
 .attendees {
   grid-area: attendees
+}
+
+.activity:hover {
+  background-color: lightcyan
+}
+
+/* Topics Container */
+.topicsContainer{
+  display:grid;
+  grid-template-areas:  
+    "addTopicButton null"
+    "topics topic"
+}
+
+.topics{
+  grid-area: topics
+}
+
+.addTopicButton{
+  grid-area: addTopicButton
+}
+
+.topic{
+  grid-area: topic
 }

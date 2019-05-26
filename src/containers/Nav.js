@@ -1,14 +1,30 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {Nav} from 'react-bootstrap'
 
-const Nav = (props) => {
+const Navbar = (props) => {
+
+    const handleClick = (e) => {
+        console.log("hello")
+        props.history.push(`/profile/events/${props.activeEventId}/${e.target.name}`)
+    }
+
+    // console.log(props)
     return (
-        <>
-            <p className="topic"><Link to={`/profile/events/${props.activeEventId}/topics`}>Topic</Link></p>
-            <p className="schedule"><Link to={`/profile/events/${props.activeEventId}/schedule`}>Schedule</Link></p>
-            <p className="attendees">Attendees</p>
-        </>
+            <div>
+            <Nav fill variant="tabs" defaultActiveKey="/profile">
+                <Nav.Item>
+                    <Nav.Link name="topics" onClick={handleClick} eventKey="link-1">Topics</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link name="schedule" onClick={handleClick} eventKey="link-2">Schedule</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link name="participants" onClick={handleClick} eventKey="link-3">Participants</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            </div>
     )
 }
 
@@ -18,4 +34,5 @@ function mapPropsToState(state) {
     }
 }
 
-export default connect(mapPropsToState)(withRouter(Nav))
+export default connect(mapPropsToState)(withRouter(Navbar))
+

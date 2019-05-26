@@ -4,9 +4,15 @@ import { connect } from 'react-redux'
 import { fetchActivities } from '../actions'
 import v4 from 'uuid'
 import AddActivityButton from '../components/AddActivityButton'
+import CardGroup from 'react-bootstrap/CardGroup'
+import AddActivityForm from '../components/AddActivityForm'
 
 
 class ScheduleContainer extends React.Component {
+
+    state = {
+        addActivityModal: false
+    }
 
     componentDidMount() {
         const topicId = parseInt(this.props.match.params.event)
@@ -35,13 +41,30 @@ class ScheduleContainer extends React.Component {
         })
     }
 
+    addActivity = () => {
+        this.setState({
+            addActivityModal: true
+        })
+    }
+
     render() {
+        let addModalClose = () => this.setState({ addActivityModal: false });
         return (
             <>
                 <p>Schedule</p>
-                {this.renderDays()}
-                <AddActivityButton />
-
+                <AddActivityButton addactivity={this.addActivity}/>
+                {this.state.addActivityModal ? 
+                    <AddActivityForm
+                        show={this.state.addActivityModal}
+                        onHide={addModalClose}
+                        eventid={parseInt(this.props.match.params.event)}
+                    />
+                    :
+                    null
+                    }
+                <CardGroup>
+                    {this.renderDays()}
+                </CardGroup>
             </>
         )
     }
@@ -52,7 +75,5 @@ function mapStateToProps(state) {
         activities: state.activities
     }
 }
-
-
 
 export default connect(mapStateToProps, {fetchActivities})(ScheduleContainer)

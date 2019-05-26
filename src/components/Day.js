@@ -29,15 +29,28 @@ class Day extends React.Component {
     renderActivities = () => {
 
         const activityComponents = Object.keys(this.props.activities).map(id => {
+            const timeArray = this.props.activities[id].start_time.split(":")
+            let hour = parseInt(timeArray[0])
+            let minute = timeArray[1]
+            let clock = "AM"
+            console.log(hour)
+            if (hour >= 12) {
+                clock = "PM"
+            }
+            if (hour > 13) {
+                hour -= 12
+            }
+            const newTime = (hour + '') + ":" + minute + clock
+
             return (
-                <Card.Text onClick={() => this.setState({ modalShow: true, activity: this.props.activities[id]})} className="activity" key={ v4() }>
-                    {this.props.activities[id].start_time}  {this.props.activities[id].name}
+                <Card.Text onClick={() => this.setState({ modalShow: true, activity: this.props.activities[id]})} className="activity" start={this.props.activities[id].start_time} key={ v4() }>
+                    {newTime} {this.props.activities[id].name}
                 </Card.Text>
             )
         })
 
         return activityComponents.sort((a, b) => {
-            return a.props.children[0].localeCompare(b.props.children[0])
+            return a.props.start.localeCompare(b.props.start)
         })
 
     }
@@ -50,7 +63,7 @@ class Day extends React.Component {
             <>
                 <Card>
                     <Card.Body>
-                    <Card.Title>{moment(this.props.date).format('LL')}</Card.Title>
+                    <Card.Title>{moment(this.props.date).format('dddd LL')}</Card.Title>
                     {this.renderActivities()}
                     {this.state.modalShow ? 
                     <MyVerticallyCenteredModal

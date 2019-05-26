@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 import { post } from '../adapters'
 import {addactivity} from '../actions'
 import {connect} from 'react-redux'
@@ -9,11 +10,15 @@ import {connect} from 'react-redux'
 class AddActivityForm extends React.Component {
 
     state = {
-        startTime: '',
-        endTime: '',
         date: '', 
         name: '',
-        description: ''
+        description: '',
+        startHour: '',
+        startMinute: '',
+        startClock: 'AM',
+        endHour: '',
+        endMinute: '',
+        endClock: 'AM',
     }
 
     handleChange = (e) => {
@@ -24,7 +29,48 @@ class AddActivityForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const body = {...this.state, eventId: this.props.eventid}
+        let startTimeHour = this.state.startHour
+        if (this.state.startClock === "PM" && this.state.startHour !== "12") {
+          startTimeHour = parseInt(startTimeHour)
+          startTimeHour += 12
+          startTimeHour = String(startTimeHour)
+        }
+        if (this.state.startClock === "AM" && this.state.startHour === "12") {
+          startTimeHour = parseInt(startTimeHour)
+          startTimeHour -= 12
+          startTimeHour = String(startTimeHour)
+        }
+
+        if (startTimeHour.length < 2) {
+          startTimeHour = "0" + startTimeHour
+        }
+
+        let startTime = startTimeHour + ":" + this.state.startMinute
+
+        let endTimeHour = this.state.endHour
+        if (this.state.endClock === "PM" && this.state.endHour !== "12") {
+          endTimeHour = parseInt(endTimeHour)
+          endTimeHour += 12
+          endTimeHour = String(endTimeHour)
+        }
+        if (this.state.endClock === "AM" && this.state.endHour === "12") {
+          endTimeHour = parseInt(endTimeHour)
+          endTimeHour -= 12
+          endTimeHour = String(endTimeHour)
+        }
+
+        let endTime = endTimeHour + this.state.endMinute
+
+        // const endTime = 
+        let body = {...this.state, eventId: this.props.eventid}
+        body["startTime"] = startTime
+        body["endTime"] = endTime
+        delete body.startHour
+        delete body.startMinute
+        delete body.startClock
+        delete body.endHour
+        delete body.endMinute
+        delete body.endClock
         
         post(`http://localhost:3000/activities`, body)
         .then( (response) => {
@@ -69,27 +115,83 @@ class AddActivityForm extends React.Component {
                     />
                 </Form.Group>
 
-                <Form.Group >
-                    <Form.Label >Start Time</Form.Label>
-                    <Form.Control 
-                        onChange={this.handleChange} 
-                        type="text" 
-                        name="startTime" 
-                        value={this.state.startTime}
-                        placeholder="Enter Activity Start Time"
-                    />
-                </Form.Group>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                      <Form.Label >Start Time</Form.Label>
+                      <Form.Control 
+                          onChange={this.handleChange} 
+                          type="text"
+                          maxLength="2" 
+                          minLength="2"
+                          name="startHour" 
+                          value={this.state.startHour}
+                          placeholder="HH"
+                      />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label style={{color:'WHITE'}}>filler</Form.Label>
+                      <Form.Control 
+                          onChange={this.handleChange} 
+                          type="text"
+                          maxLength="2" 
+                          minLength="2" 
+                          name="startMinute" 
+                          value={this.state.startMinute}
+                          placeholder="MM"
+                      />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label style={{color:'WHITE'}}>filler</Form.Label>
+                      <Form.Control as="select"
+                          onChange={this.handleChange} 
+                          name="startClock" 
+                          value={this.state.startClock}
+                          placeholder="AM/PM"
+                      >
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                      </Form.Control>
+                  </Form.Group>
+                </Form.Row>
 
-                <Form.Group >
-                    <Form.Label >End Time</Form.Label>
-                    <Form.Control 
-                        onChange={this.handleChange} 
-                        type="text" 
-                        name="endTime" 
-                        value={this.state.endTime}
-                        placeholder="Enter Activity End Time"
-                    />
-                </Form.Group>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                      <Form.Label >End Time</Form.Label>
+                      <Form.Control 
+                          onChange={this.handleChange} 
+                          type="text"
+                          maxLength="2" 
+                          minLength="2"
+                          name="endHour" 
+                          value={this.state.endHour}
+                          placeholder="HH"
+                      />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label style={{color:'WHITE'}}>filler</Form.Label>
+                      <Form.Control 
+                          onChange={this.handleChange} 
+                          type="text"
+                          maxLength="2" 
+                          minLength="2" 
+                          name="endMinute" 
+                          value={this.state.endMinute}
+                          placeholder="MM"
+                      />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label style={{color:'WHITE'}}>filler</Form.Label>
+                      <Form.Control as="select"
+                          onChange={this.handleChange} 
+                          name="endClock" 
+                          value={this.state.endClock}
+                          placeholder="AM/PM"
+                      >
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                      </Form.Control>
+                  </Form.Group>
+                </Form.Row>
 
                 <Form.Group >
                     <Form.Label >Description</Form.Label>

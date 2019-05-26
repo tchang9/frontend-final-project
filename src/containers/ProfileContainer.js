@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import Nav from '../containers/Nav'
+import Navbar from '../containers/Nav'
 import BodyContainer from '../containers/BodyContainer'
 import { connect } from 'react-redux'
 import { fetchEvents, login, selectEvent } from '../actions'
@@ -31,20 +31,26 @@ class ProfileContainer extends React.Component {
             this.props.selectEvent(Object.keys(this.props.events)[0])
         }
         return (
-            <div className="profileContainer">
-               <div className="sidebar">
-                   <Sidebar />
-               </div>
-               <div className="header">
-                   <Header />
-               </div>
-               <div className="nav">
-                   <Nav />
-               </div>
-               <div className="bodyContainer">
-                   <BodyContainer />
-               </div>
-           </div> 
+            <>
+                {this.props.activeEventId ? 
+                <div className="profileContainer">
+                <div className="sidebar">
+                    <Sidebar />
+                </div>
+                <div className="header">
+                    <Header />
+                </div>
+                <div className="nav">
+                    <Navbar />
+                </div>
+                <div className="bodyContainer">
+                    <BodyContainer />
+                </div>
+                </div> 
+                :
+                null
+                }
+            </>
        )
     }
 }

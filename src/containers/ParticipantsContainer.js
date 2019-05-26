@@ -15,10 +15,22 @@ class ParticipantsContainer extends React.Component {
         })
     }
 
+    generateMagicLink = () => {
+        const eventId = this.props.activeEventId
+        return `http://localhost:3001/join-event/${eventId}`
+    }
+
+    handleClick = () => {
+
+    }
+
     render() {
         return (
             <>
+            <p>Participants</p>
             {this.renderUsers()}
+            <p>Invite Others!</p>
+            {this.generateMagicLink()}
             </>
         )
     }

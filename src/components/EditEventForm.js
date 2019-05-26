@@ -104,7 +104,6 @@ class EditEventForm extends React.Component{
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    {/* <Button onClick={this.props.onHide}>Close</Button> */}
                     <Button variant="primary" type="submit" onClick={this.handleSubmit}>
                             Submit
                     </Button>

@@ -3,6 +3,8 @@ import Comment from '../components/Comment'
 import AddCommentForm from '../components/AddCommentForm'
 import { connect } from 'react-redux'
 import { fetchComments } from '../actions'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 
 // Shows ONE TOPIC for an event
@@ -20,14 +22,22 @@ class TopicContainer extends React.Component {
         })
     }
 
-    
     render() {
-        // const topic = this.props.topics[this.props.match.params.event]
+        let comments = this.props.comments
+        const topicId = parseInt(this.props.match.params.topic)
         return (
-            <>
-                {/* <p>{topic.label}</p> */}
-                {this.props.comments.comments ? null : this.renderComments()}
-                <AddCommentForm topicId={parseInt(this.props.match.params.topic)}/>
+            <>  
+                {Object.keys(comments).length === 0 ? null :
+                <>
+                 <p>{comments[Object.keys(comments)[0]].topic.label}</p>
+                <Card>
+                    <ListGroup variant="flush">
+                        {this.renderComments()}
+                    </ListGroup>
+                </Card>
+                </>
+                }
+                <AddCommentForm topicId={topicId}/>
             </>
         )
     }
@@ -35,7 +45,6 @@ class TopicContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        topics: state.topics,
         comments: state.comments,
     }
 }

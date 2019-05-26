@@ -5,6 +5,7 @@ import {logout} from '../actions'
 import { withRouter } from 'react-router'
 import Button from 'react-bootstrap/Button'
 import EditEventForm from './EditEventForm'
+var moment = require('moment');
 
 class Header extends React.Component {
 
@@ -31,20 +32,37 @@ class Header extends React.Component {
             <>
                 {this.props.event ? 
                 <>
-                    <p className="eventName">{this.props.event.name}</p>
-                    <p className="eventDate">{this.props.event.start_date} - {this.props.event.end_date}</p>
+                    
+                    <h1 className="eventName">{this.props.event.name}</h1>
+                    <p className="eventDate">
+                        {moment(this.props.event.start_date).format('MMMM Do')} - {moment(this.props.event.end_date).format('MMMM Do YYYY')}
+                    </p>
                     <p className="eventLocation">{this.props.event.location}</p>
                     <Button 
-                        onClick={this.editEvent} className="editEvent" 
+                        variant="outline-info" 
+                        size="sm"
+                        onClick={this.editEvent} 
+                        className="editEvent" 
                         variant="outline-info">
-                        Edit Event
+                    Edit Event
                     </Button>
+                    <DropdownButton 
+                        className="user" 
+                        id="dropdown-item-button" 
+                        title={this.props.currentUser.first_name ? this.props.currentUser.first_name : "loading"}
+                        size="lg"
+                        variant="outline-info"
+                        >
+                    <Dropdown.Item as="button">Profile</Dropdown.Item>
+                    <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>
+                    </DropdownButton>
+
+ 
                     {this.state.editEventModal ? 
                     <EditEventForm 
                         show={this.state.editEventModal}
                         onHide={editModalClose}
                         eventid={this.props.activeEventId}
-
                     />
                     :
                     null
@@ -53,10 +71,6 @@ class Header extends React.Component {
                 :
                 <p> loading </p>
                 }
-                <DropdownButton className="user" id="dropdown-item-button" title={this.props.currentUser.first_name ? this.props.currentUser.first_name : "loading"}>
-                    <Dropdown.Item as="button">Profile</Dropdown.Item>
-                    <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>
-                </DropdownButton>
             </>
         )
     }

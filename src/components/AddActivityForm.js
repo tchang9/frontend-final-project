@@ -201,7 +201,7 @@ class AddActivityForm extends React.Component {
                         type="textarea" 
                         name="description" 
                         value={this.state.description}
-                        placeholder="Enter Activity description"
+                        placeholder="Enter Activity Description"
                     />
                 </Form.Group>
             </Form>

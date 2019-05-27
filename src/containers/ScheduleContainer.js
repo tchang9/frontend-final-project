@@ -51,7 +51,6 @@ class ScheduleContainer extends React.Component {
         let addModalClose = () => this.setState({ addActivityModal: false });
         return (
             <>
-                <p>Schedule</p>
                 <AddActivityButton addactivity={this.addActivity}/>
                 {this.state.addActivityModal ? 
                     <AddActivityForm

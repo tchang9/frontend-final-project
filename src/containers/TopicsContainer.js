@@ -1,6 +1,5 @@
 import React from 'react'
-import AddTopicButton from '../components/AddTopicButton'
-// import AddTopicForm from '../components/AddTopicForm'
+import AddTopicForm from '../components/AddTopicForm'
 import { connect } from 'react-redux'
 import { fetchTopics, selectTopic } from '../actions'
 import { Link } from 'react-router-dom'
@@ -9,6 +8,10 @@ import v4 from 'uuid'
 
 // Shows all the Topics for an event
 class TopicsContainer extends React.Component {
+
+    state = {
+        addTopicModal: false
+    }
 
     componentDidMount() {
         this.props.fetchTopics(this.props.activeEventId)
@@ -23,8 +26,6 @@ class TopicsContainer extends React.Component {
                         <Card.Body>
                         <Card.Title>{topic.label}</Card.Title>
                         <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk
-                            of the card's content.
                         </Card.Text>
                         </Card.Body>
                     </Card>
@@ -33,15 +34,33 @@ class TopicsContainer extends React.Component {
         })
     }
 
+    addTopicClick = () => {
+        this.setState({
+            addTopicModal: true
+        })
+    }
+
     render() {
+        let addTopicModalClose = () => this.setState({ addTopicModal: false });
         return (
             <div className="topicsContainer">
                 <div className="topics">
                     {this.props.topics ? this.renderTopics() : "loading"}
                 </div>
                 <div className="addTopicButton">
-                <AddTopicButton /> 
+                    <button onClick={this.addTopicClick} className="item">
+                        Add New Topic
+                    </button>
                 </div>
+                {this.state.addTopicModal ? 
+                    <AddTopicForm 
+                        show={this.state.addTopicModal}
+                        onHide={addTopicModalClose}
+                        eventId = {this.props.activeEventId}
+                />
+                :
+                null
+                }
             </div>
         )
     }

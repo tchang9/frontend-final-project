@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {DropdownButton, Dropdown} from 'react-bootstrap'
-import {logout} from '../actions'
+import {logout, selectEvent} from '../actions'
 import { withRouter } from 'react-router'
 import Button from 'react-bootstrap/Button'
 import EditEventForm from './EditEventForm'
@@ -23,6 +23,15 @@ class Header extends React.Component {
         this.setState({
             editEventModal: true
         })
+    }
+
+    deleteEventRedirect = (eventId) => {
+        this.props.history.push('/profile/events')
+        if (Object.keys(this.props.events)[0] === eventId) {
+            this.props.selectEvent(Object.keys(this.props.events)[1])
+        } else {
+            this.props.selectEvent(Object.keys(this.props.events)[0])
+        }
     }
 
     render () {
@@ -62,6 +71,7 @@ class Header extends React.Component {
                         show={this.state.editEventModal}
                         onHide={editModalClose}
                         eventid={this.props.activeEventId}
+                        deleteEventRedirect={this.deleteEventRedirect}
                     />
                     :
                     null
@@ -79,9 +89,9 @@ function mapStateToProps(state) {
     return {
         event: state.events[state.activeEventId],
         currentUser: state.currentUser,
-        activeEventId: state.activeEventId
-
+        activeEventId: state.activeEventId,
+        events: state.events
     }
 }
 
-export default connect(mapStateToProps, {logout})(withRouter(Header))
+export default connect(mapStateToProps, {logout, selectEvent})(withRouter(Header))

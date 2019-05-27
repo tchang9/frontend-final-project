@@ -1,5 +1,5 @@
-import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY, ADD_ACTIVITY, FETCH_EVENT_USERS } from "../constants/ActionTypes";
-import { get, patch, post } from '../adapters'
+import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY, ADD_ACTIVITY, FETCH_EVENT_USERS, DELETE_ACTIVITY, DELETE_EVENT } from "../constants/ActionTypes";
+import { get, patch, post, destroy } from '../adapters'
 
 export function getTopics(topics) {
     return {
@@ -132,6 +132,24 @@ export const fetchEventUsers = (eventId) => {
         post(`http://localhost:3000/fetch-event-users`, eventId)
         .then(users => {
             dispatch({type: FETCH_EVENT_USERS, payload: users})
+        })
+    }
+}
+
+export const deleteActivity = (activityId) => {
+    return (dispatch) => {
+        destroy(`http://localhost:3000/activities/${activityId}`)
+        .then(activityId => {
+            dispatch({type: DELETE_ACTIVITY, payload: activityId})
+        })
+    }
+}
+
+export const deleteEvent = (eventId) => {
+    return (dispatch) => {
+        destroy(`http://localhost:3000/events/${eventId}`)
+        .then(eventId => {
+            dispatch({type: DELETE_EVENT, payload: eventId})
         })
     }
 }

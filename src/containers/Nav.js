@@ -6,11 +6,9 @@ import {Nav} from 'react-bootstrap'
 const Navbar = (props) => {
 
     const handleClick = (e) => {
-        console.log("hello")
         props.history.push(`/profile/events/${props.activeEventId}/${e.target.name}`)
     }
 
-    // console.log(props)
     return (
             <div>
             <Nav fill variant="tabs" defaultActiveKey="/profile">

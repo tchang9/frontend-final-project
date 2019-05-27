@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { editEvent } from '../actions'
+import { editEvent, deleteEvent } from '../actions'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -44,10 +44,17 @@ class EditEventForm extends React.Component{
         this.props.onHide()
     }
 
+    handleDelete = () => {
+        this.props.deleteEvent(this.props.eventid)
+        this.props.onHide()
+    }
+
     render() {
+        let {show, onHide} = this.props
         return (
             <Modal
-                {...this.props}
+                show={show}
+                onHide={onHide}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -104,6 +111,7 @@ class EditEventForm extends React.Component{
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="outline-danger" onClick={this.handleDelete}>Delete</Button>
                     <Button variant="primary" type="submit" onClick={this.handleSubmit}>
                             Submit
                     </Button>
@@ -119,4 +127,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {editEvent})(EditEventForm)
+export default connect(mapStateToProps, {editEvent, deleteEvent})(EditEventForm)

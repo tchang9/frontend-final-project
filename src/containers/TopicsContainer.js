@@ -2,12 +2,10 @@ import React from 'react'
 import AddTopicButton from '../components/AddTopicButton'
 // import AddTopicForm from '../components/AddTopicForm'
 import { connect } from 'react-redux'
-import { fetchTopics, fetchComments, selectTopic } from '../actions'
+import { fetchTopics, selectTopic } from '../actions'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import v4 from 'uuid'
-import TopicContainer from './TopicContainer'
-
 
 // Shows all the Topics for an event
 class TopicsContainer extends React.Component {

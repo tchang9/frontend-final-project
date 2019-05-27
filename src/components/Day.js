@@ -1,5 +1,5 @@
 import React from 'react'
-import MyVerticallyCenteredModal from './Activity'
+import Activity from './Activity'
 import v4 from 'uuid'
 import Card from 'react-bootstrap/Card'
 import EditActivityModal from '../components/EditActivityModal'
@@ -33,14 +33,13 @@ class Day extends React.Component {
             let hour = parseInt(timeArray[0])
             let minute = timeArray[1]
             let clock = "AM"
-            console.log(hour)
             if (hour >= 12) {
                 clock = "PM"
             }
             if (hour > 13) {
                 hour -= 12
             }
-            const newTime = (hour + '') + ":" + minute + clock
+            const newTime = (hour + '').concat(":", minute, clock)
 
             return (
                 <Card.Text onClick={() => this.setState({ modalShow: true, activity: this.props.activities[id]})} className="activity" start={this.props.activities[id].start_time} key={ v4() }>
@@ -66,7 +65,7 @@ class Day extends React.Component {
                     <Card.Title>{moment(this.props.date).format('dddd LL')}</Card.Title>
                     {this.renderActivities()}
                     {this.state.modalShow ? 
-                    <MyVerticallyCenteredModal
+                    <Activity
                         show={this.state.modalShow}
                         onHide={modalClose}
                         editActivity={editActivity}

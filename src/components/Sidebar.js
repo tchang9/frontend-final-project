@@ -2,14 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { selectEvent } from '../actions'
+import AddEventForm from './AddEventForm'
 
-const Sidebar = (props) => {
+class Sidebar extends React.Component {
 
-    const renderEvents = () => {
-        return Object.keys(props.events).map(id => {
-            const event = props.events[id]
+    state = {
+        addEventModal: false
+    }
+
+    renderEvents = () => {
+        return Object.keys(this.props.events).map(id => {
+            const event = this.props.events[id]
             return (
-                <div onClick={() => handleClick(id)} key={id}>
+                <div onClick={() => this.handleClick(id)} key={id}>
                     <Link to={`/profile/events/${id}`}>
                         <button className="item">
                             {event.name}
@@ -20,29 +25,43 @@ const Sidebar = (props) => {
         })
     }
 
-    const handleClick = (eventId) => {
-        props.selectEvent(eventId)
+    handleClick = (eventId) => {
+        this.props.selectEvent(eventId)
     }
 
-    return (
-        <div>
-            <div>
-                <h3>NAME OF APP</h3>
-            </div>
-            <div>
-                <h4>Events</h4>
-            </div>
-            {renderEvents()}
-            <div>
-            <Link to={`/profile/events/add`}>
-                <button className="item">
-                    Add New Event
-                </button>
-            </Link>
+    addEventClick = () => {
+        this.setState({
+            addEventModal: true
+        })
+    }
 
+    render() {
+        let addModalClose = () => this.setState({ addEventModal: false });
+        return (
+            <div>
+                <div>
+                    <h3>NAME OF APP</h3>
+                </div>
+                <div>
+                    <h4>Events</h4>
+                </div>
+                {this.renderEvents()}
+                <div>
+                    <button onClick={this.addEventClick} className="item">
+                        Add New Event
+                    </button>
+                </div>
+                {this.state.addEventModal ? 
+                    <AddEventForm 
+                        show={this.state.addEventModal}
+                        onHide={addModalClose}
+                />
+                :
+                null
+                }
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 function mapStateToProps(state) {

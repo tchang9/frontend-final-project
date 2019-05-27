@@ -47,6 +47,7 @@ class EditEventForm extends React.Component{
     handleDelete = () => {
         this.props.deleteEvent(this.props.eventid)
         this.props.onHide()
+        this.props.deleteEventRedirect()
     }
 
     render() {
@@ -91,7 +92,7 @@ class EditEventForm extends React.Component{
                             <Form.Label >End Date</Form.Label>
                             <Form.Control 
                                 onChange={this.handleChange} 
-                                type="text" 
+                                type="date" 
                                 name="endDate" 
                                 value={this.state.endDate}
                                 placeholder="Enter Event End Date"

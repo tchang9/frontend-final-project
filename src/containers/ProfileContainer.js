@@ -38,7 +38,7 @@ class ProfileContainer extends React.Component {
                     <Sidebar />
                 </div>
                 <div className="header">
-                    <Header />
+                    <Header className="FOOBARRRRR"/>
                 </div>
                 <div className="nav">
                     <Navbar />

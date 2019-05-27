@@ -39,7 +39,6 @@ class Header extends React.Component {
                     </p>
                     <p className="eventLocation">{this.props.event.location}</p>
                     <Button 
-                        variant="outline-info" 
                         size="sm"
                         onClick={this.editEvent} 
                         className="editEvent" 

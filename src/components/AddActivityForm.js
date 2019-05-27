@@ -59,9 +59,8 @@ class AddActivityForm extends React.Component {
           endTimeHour = String(endTimeHour)
         }
 
-        let endTime = endTimeHour + this.state.endMinute
+        let endTime = endTimeHour + ":" + this.state.endMinute
 
-        // const endTime = 
         let body = {...this.state, eventId: this.props.eventid}
         body["startTime"] = startTime
         body["endTime"] = endTime
@@ -80,9 +79,11 @@ class AddActivityForm extends React.Component {
     }
 
     render() {
+      let {show, onHide} = this.props
       return (
         <Modal
-          {...this.props}
+          show={show}
+          onHide={onHide}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered

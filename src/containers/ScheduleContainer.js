@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { fetchActivities } from '../actions'
 import v4 from 'uuid'
 import AddActivityButton from '../components/AddActivityButton'
-import CardGroup from 'react-bootstrap/CardGroup'
 import AddActivityForm from '../components/AddActivityForm'
 
 

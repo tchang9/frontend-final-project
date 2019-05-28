@@ -16,7 +16,6 @@ class Welcome extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         let loginModalClose = () => this.setState({ loginModal: false });
         let createAccountModalClose = () => this.setState({ createAccountModal: false });
         return (

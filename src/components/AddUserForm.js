@@ -1,6 +1,6 @@
 import React from 'react'
 import {post} from '../adapters'
-import queryString from 'query-string'
+// import queryString from 'query-string'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -20,7 +20,6 @@ class AddUserForm extends React.Component{
             [e.target.name]: e.target.value
         })
     }
-
     handleSubmit = (e) => {
         e.preventDefault()
         
@@ -28,14 +27,19 @@ class AddUserForm extends React.Component{
             post('http://localhost:3000/users', this.state)
             .then(response => {
                 localStorage.setItem("token", response.token)
-                if (this.props.location.search === "") {
+                if (!this.props.match.params.eventId) {
                     this.props.history.push('/profile')
                 } else {
-                    const searchParams = queryString.parse(this.props.location.search)
-                    console.log(searchParams.redirect)
-                    post(`http://localhost:3000/${searchParams.redirect}`)
-                    .then(() => {
-                        this.props.history.push(`/profile/events/`)
+                    // const searchParams = queryString.parse(this.props.location.search)
+                    // console.log(searchParams.redirect)
+                    // post(`http://localhost:3000/${searchParams.redirect}`)
+                    // .then(() => {
+                    //     this.props.history.push(`/profile/events/`)
+                    // })
+                    const eventId = atob(this.props.match.params.eventId)
+                    post(`http://localhost:3000/join-event/${eventId}`)
+                    .then( () => {
+                        this.props.history.push('/profile')
                     })
                 }
             })
@@ -45,7 +49,6 @@ class AddUserForm extends React.Component{
     }
 
     render() {
-        console.log(this.props)
         let {show, onHide} = this.props
         return (
             <Modal

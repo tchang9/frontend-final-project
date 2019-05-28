@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { withRouter } from 'react-router'
+import {post} from '../adapters'
 
 class Login extends React.Component{
 
@@ -35,7 +36,15 @@ class Login extends React.Component{
             } else {
                 this.props.login(response.user)
                 localStorage.setItem("token", response.token)
-                this.props.history.push('/profile')
+                if (this.props.match.params.eventId) {
+                    const eventId = atob(this.props.match.params.eventId)
+                    post(`http://localhost:3000/join-event/${eventId}`)
+                    .then( () => {
+                        this.props.history.push('/profile')
+                    })
+                } else {
+                    this.props.history.push('/profile')
+                }
             }
         })
     }

@@ -17,6 +17,9 @@
   background-color: #121615;
   height: 100vh;
   align-items: center;
+  /* position: sticky;
+  top: 0;
+  z-index: 1; */
 }
 .header {
   grid-area: header;

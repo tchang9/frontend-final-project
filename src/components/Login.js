@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { login } from '../actions'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { withRouter } from 'react-router'
 
 class Login extends React.Component{
 
@@ -35,35 +39,54 @@ class Login extends React.Component{
             }
         })
     }
-        
-    handleClick = () => {
-        this.props.history.push('/signup')
-    }
 
     render() {
+        let {show, onHide} = this.props
         return (
-            <>
-                <h1>Project Title</h1>
-                <p>Sign in </p>
-                <form onSubmit={this.handleSubmit} >
-                    Email
-                    <input 
-                        onChange={this.handleChange} type="text" 
-                        name="email" 
-                        value={this.state.email}
-                    />
-                    Password:
-                    <input 
-                        onChange={this.handleChange}type="text" 
-                        name="password" 
-                        value={this.state.password}/>
-                    <button>Submit</button>
-                </form> 
-                <button onClick={this.handleClick} >Create Account</button>
+            <Modal
+                show={show}
+                onHide={onHide}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                    Login
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={this.handleSubmit} >
+                        <Form.Group >
+                            <Form.Label >Email</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                name="email" 
+                                type="text" 
+                                placeholder="Enter Email"
+                                value={this.state.email} />
+                        </Form.Group>
 
-            </>
+                        <Form.Group >
+                            <Form.Label >Password</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="password" 
+                                name="password" 
+                                value={this.state.password}
+                                placeholder="Enter Password"
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                            Log in
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         )
     }
 }
 
-export default connect(null, { login })(Login)
+export default connect(null, { login })(withRouter(Login))

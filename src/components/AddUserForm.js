@@ -1,6 +1,10 @@
 import React from 'react'
 import {post} from '../adapters'
 import queryString from 'query-string'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { withRouter } from 'react-router'
 
 class AddUserForm extends React.Component{
     state = {
@@ -25,7 +29,7 @@ class AddUserForm extends React.Component{
             .then(response => {
                 localStorage.setItem("token", response.token)
                 if (this.props.location.search === "") {
-                    this.props.history.push('/add-event')
+                    this.props.history.push('/profile')
                 } else {
                     const searchParams = queryString.parse(this.props.location.search)
                     console.log(searchParams.redirect)
@@ -42,45 +46,85 @@ class AddUserForm extends React.Component{
 
     render() {
         console.log(this.props)
+        let {show, onHide} = this.props
         return (
-            <>
-                <h1>Create Your Account</h1>
-                <form onSubmit={this.handleSubmit} >
-                    First Name
-                    <input 
-                        onChange={this.handleChange} type="text" 
-                        name="firstName" 
-                        value={this.state.firstName}
-                    />
-                    Last Name:
-                    <input 
-                        onChange={this.handleChange}type="text" 
-                        name="lastName" 
-                        value={this.state.lastName}
-                    />
-                    Email:
-                    <input 
-                        onChange={this.handleChange} type="text" 
-                        name="email" 
-                        value={this.state.email}
-                    />
-                    Password:
-                    <input 
-                        onChange={this.handleChange}type="text" 
-                        name="password" 
-                        value={this.state.password}
-                    />
-                    Confirm Password:
-                    <input 
-                        onChange={this.handleChange}type="text" 
-                        name="confirmPassword" 
-                        value={this.state.confirmPassword}
-                    />
-                    <button>Next</button>
-                </form> 
-            </>
+            <Modal
+                show={show}
+                onHide={onHide}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Create Account
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={this.handleSubmit} >
+                        <Form.Group >
+                            <Form.Label >First Name</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                name="firstName" 
+                                type="text" 
+                                placeholder="Enter First Name"
+                                value={this.state.firstName} />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Last Name</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="text" 
+                                name="lastName" 
+                                value={this.state.lastName}
+                                placeholder="Enter Last Name"
+                            />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Email</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="text" 
+                                name="email" 
+                                value={this.state.email}
+                                placeholder="Enter Email"
+                            />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Password</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="password" 
+                                name="password" 
+                                value={this.state.password}
+                                placeholder="Enter Password"
+                            />
+                        </Form.Group>
+
+                        <Form.Group >
+                            <Form.Label >Confirm Password</Form.Label>
+                            <Form.Control 
+                                onChange={this.handleChange} 
+                                type="password" 
+                                name="confirmPassword" 
+                                value={this.state.confirmPassword}
+                                placeholder="Confirm Password"
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                            Create Account
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         )
     }
 }
 
-export default AddUserForm
+export default withRouter(AddUserForm)

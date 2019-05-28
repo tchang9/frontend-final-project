@@ -61,9 +61,9 @@ class ScheduleContainer extends React.Component {
                     :
                     null
                     }
-                <CardGroup>
+                <div className="dayCards">
                     {this.renderDays()}
-                </CardGroup>
+                </div>
             </>
         )
     }

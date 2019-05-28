@@ -60,7 +60,7 @@ class Day extends React.Component {
         let editModalClose = () => this.setState({ editModalShow: false });
         return (
             <>
-                <Card>
+                <Card className="dayCard">
                     <Card.Body>
                     <Card.Title>{moment(this.props.date).format('dddd LL')}</Card.Title>
                     {this.renderActivities()}

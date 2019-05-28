@@ -26,10 +26,10 @@ class TopicContainer extends React.Component {
         let comments = this.props.comments
         const topicId = parseInt(this.props.match.params.topic)
         return (
-            <>  
+            <div className="topic">  
                 {Object.keys(comments).length === 0 ? null :
                 <>
-                 <p>{comments[Object.keys(comments)[0]].topic.label}</p>
+                 <h2 className="topicName">{comments[Object.keys(comments)[0]].topic.label}</h2>
                 <Card>
                     <ListGroup variant="flush">
                         {this.renderComments()}
@@ -38,7 +38,7 @@ class TopicContainer extends React.Component {
                 </>
                 }
                 <AddCommentForm topicId={topicId}/>
-            </>
+            </div>
         )
     }
 }

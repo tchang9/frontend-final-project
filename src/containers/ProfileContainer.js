@@ -29,7 +29,6 @@ class ProfileContainer extends React.Component {
     render() {
         if (Object.keys(this.props.events).length > 0 && !this.props.activeEventId) {
             this.props.selectEvent(Object.keys(this.props.events)[0])
-        console.log(this.props)
         }
         return (
             <>
@@ -39,16 +38,19 @@ class ProfileContainer extends React.Component {
                     </div>
                     {this.props.activeEventId ?
                     <> 
-                        <div className="headerNav">
-                            <div className="header">
-                                <Header />
+                        <div className="notSidebar">
+                            <div className="headerNav">
+                                <div className="header">
+                                    <Header />
+                                </div>
+                                <div className="nav">
+                                    <Navbar />
+                                </div>
                             </div>
-                            <div className="nav">
-                                <Navbar />
+
+                            <div className="bodyContainer">
+                                <BodyContainer />
                             </div>
-                        </div>
-                        <div className="bodyContainer">
-                            <BodyContainer />
                         </div>
                     </>
                     :

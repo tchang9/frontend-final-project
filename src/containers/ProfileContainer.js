@@ -17,7 +17,7 @@ class ProfileContainer extends React.Component {
             get("http://localhost:3000/auto_login")
 			.then((response) => {
 				if (response.errors) {
-                    this.props.history.push('/login')
+                    this.props.history.push('/welcome')
 				} else {
                     this.props.login(response)
                     this.props.fetchEvents()
@@ -29,6 +29,7 @@ class ProfileContainer extends React.Component {
     render() {
         if (Object.keys(this.props.events).length > 0 && !this.props.activeEventId) {
             this.props.selectEvent(Object.keys(this.props.events)[0])
+        console.log(this.props)
         }
         return (
             <>

@@ -23,7 +23,7 @@ function withAuth(MyComponent){
                 if (token) {
                     return <MyComponent {...this.props}/>
                 } else {
-                    return <Redirect to="/login" />
+                    return <Redirect to="/welcome" />
                 }
             }
 

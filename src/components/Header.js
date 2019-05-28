@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {DropdownButton, Dropdown} from 'react-bootstrap'
 import {logout, selectEvent} from '../actions'
 import { withRouter } from 'react-router'
-import Button from 'react-bootstrap/Button'
 import EditEventForm from './EditEventForm'
 var moment = require('moment');
 

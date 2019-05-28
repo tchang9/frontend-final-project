@@ -45,7 +45,7 @@ class TopicsContainer extends React.Component {
         return (
             <div className="topicsContainer">
                 <div className="addTopicButton">
-                    <button onClick={this.addTopicClick} type="button" class="btn btn-outline-primary btn-sm">Add New Topic</button>
+                    <button onClick={this.addTopicClick} type="button" className="btn btn-outline-primary btn-sm">Add New Topic</button>
                 </div>
                 <div className="topics">
                     {this.props.topics ? this.renderTopics() : "loading"}

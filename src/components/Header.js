@@ -16,7 +16,7 @@ class Header extends React.Component {
     handleClick = () => {
         localStorage.removeItem("token")
         this.props.logout()
-        this.props.history.push('/login')
+        this.props.history.push('/welcome')
     }
 
     editEvent = () => {
@@ -47,19 +47,13 @@ class Header extends React.Component {
                         {moment(this.props.event.start_date).format('MMMM Do')} - {moment(this.props.event.end_date).format('MMMM Do YYYY')}
                     </p>
                     <p className="eventLocation">{this.props.event.location}</p>
-                    <Button 
-                        size="sm"
-                        onClick={this.editEvent} 
-                        className="editEvent" 
-                        variant="outline-info">
-                    Edit Event
-                    </Button>
+                    <button onClick={this.editEvent} type="button" className="btn btn-primary editEvent btn-sm">Edit Event</button>
                     <DropdownButton 
                         className="user" 
                         id="dropdown-item-button" 
                         title={this.props.currentUser.first_name ? this.props.currentUser.first_name : "loading"}
                         size="lg"
-                        variant="outline-info"
+                        variant="btn-primary"
                         >
                     <Dropdown.Item as="button">Profile</Dropdown.Item>
                     <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>

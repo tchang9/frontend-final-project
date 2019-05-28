@@ -22,7 +22,7 @@ class TopicsContainer extends React.Component {
             const topic = this.props.topics[id]
             return (
                 <Link key={v4()} to={`/profile/events/${topic.event_id}/topics/${topic.id}`} style={{ textDecoration: 'none' }}>
-                    <Card  bg="light" style={{ width: '26rem' }}>
+                    <Card  className="card text-black mb-3" bg="secondary" style={{ width: "auto" }}>
                         <Card.Body>
                         <Card.Title>{topic.label}</Card.Title>
                         <Card.Text>
@@ -44,20 +44,19 @@ class TopicsContainer extends React.Component {
         let addTopicModalClose = () => this.setState({ addTopicModal: false });
         return (
             <div className="topicsContainer">
+                <div className="addTopicButton">
+                    <button onClick={this.addTopicClick} type="button" class="btn btn-outline-primary btn-sm">Add New Topic</button>
+                </div>
                 <div className="topics">
                     {this.props.topics ? this.renderTopics() : "loading"}
                 </div>
-                <div className="addTopicButton">
-                    <button onClick={this.addTopicClick} className="item">
-                        Add New Topic
-                    </button>
-                </div>
+
                 {this.state.addTopicModal ? 
                     <AddTopicForm 
                         show={this.state.addTopicModal}
                         onHide={addTopicModalClose}
                         eventId = {this.props.activeEventId}
-                />
+                    />
                 :
                 null
                 }

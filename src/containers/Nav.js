@@ -11,7 +11,7 @@ const Navbar = (props) => {
 
     return (
             <div>
-            <Nav fill variant="tabs" defaultActiveKey="/profile">
+            <Nav className="nav nav-tabs" fill variant="tabs" defaultActiveKey="/profile">
                 <Nav.Item>
                     <Nav.Link name="topics" onClick={handleClick} eventKey="link-1">Topics</Nav.Link>
                 </Nav.Item>

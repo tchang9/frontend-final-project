@@ -32,24 +32,30 @@ class ProfileContainer extends React.Component {
         }
         return (
             <>
-                {this.props.activeEventId ? 
                 <div className="profileContainer">
-                <div className="sidebar">
-                    <Sidebar />
-                </div>
-                <div className="header">
-                    <Header className="FOOBARRRRR"/>
-                </div>
-                <div className="nav">
-                    <Navbar />
-                </div>
-                <div className="bodyContainer">
-                    <BodyContainer />
-                </div>
+                    <div className="sidebar">
+                        <Sidebar />
+                    </div>
+                    {this.props.activeEventId ?
+                    <> 
+                        <div className="headerNav">
+                            <div className="header">
+                                <Header />
+                            </div>
+                            <div className="nav">
+                                <Navbar />
+                            </div>
+                        </div>
+                        <div className="bodyContainer">
+                            <BodyContainer />
+                        </div>
+                    </>
+                    :
+                    <div className="jumbotron">
+                        <h1 className="display-3">Welcome! Please create an event! </h1>
+                    </div>
+                    }
                 </div> 
-                :
-                null
-                }
             </>
        )
     }

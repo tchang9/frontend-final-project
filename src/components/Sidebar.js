@@ -14,11 +14,11 @@ class Sidebar extends React.Component {
         return Object.keys(this.props.events).map(id => {
             const event = this.props.events[id]
             return (
-                <div onClick={() => this.handleClick(id)} key={id}>
-                    <Link to={`/profile/events/${id}`}>
-                        <button className="item">
+                <div className="sidebarEvent"  key={id}>
+                    <Link style={{ textDecoration: 'none', color: '#F5F0EF' }} to={`/profile/events/${id}`}>
+                        <p onClick={() => this.handleClick(id)} className="sidebarEventName">
                             {event.name}
-                        </button>
+                        </p>
                     </Link>
                 </div>
             )
@@ -38,16 +38,15 @@ class Sidebar extends React.Component {
     render() {
         let addModalClose = () => this.setState({ addEventModal: false });
         return (
-            <div>
+            <>
                 <div>
-                    <h3>NAME OF APP</h3>
+                    <p className="sidebarName">EVENTI</p>
                 </div>
-                <div>
-                    <h4>Events</h4>
+                <div className="sidebarEvents">
+                    {this.renderEvents()}
                 </div>
-                {this.renderEvents()}
-                <div>
-                    <button onClick={this.addEventClick} className="item">
+                <div className="sidebarAddEvent">
+                    <button className="btn btn-primary" onClick={this.addEventClick} >
                         Add New Event
                     </button>
                 </div>
@@ -59,7 +58,7 @@ class Sidebar extends React.Component {
                 :
                 null
                 }
-            </div>
+            </>
         )
     }
 }

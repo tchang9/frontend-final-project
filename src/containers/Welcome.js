@@ -20,8 +20,9 @@ class Welcome extends React.Component {
         let createAccountModalClose = () => this.setState({ createAccountModal: false });
         return (
             <div className="welcome">
-                <button onClick={this.handleClick} name="createAccountModal" type="button" className="btn btn-secondary">Create Account</button>
-                <button onClick={this.handleClick} name="loginModal" type="button" className="btn btn-secondary">Login</button>
+                <h2 className="">Eventi</h2>
+                <button onClick={this.handleClick} name="createAccountModal" type="button" className="btn btn-secondary welcome-create">Create Account</button>
+                <button onClick={this.handleClick} name="loginModal" type="button" className="btn btn-secondary welcome-login">Login</button>
                 {this.state.loginModal ? 
                     <Login
                         show={this.state.loginModal}

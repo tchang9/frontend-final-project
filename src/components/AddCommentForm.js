@@ -44,7 +44,6 @@ class AddCommentForm extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <Form className="addCommentForm" onSubmit={this.handleSubmit}>
                 {this.state.errors ? 

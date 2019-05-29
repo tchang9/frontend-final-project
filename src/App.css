@@ -75,6 +75,8 @@
 .sidebarEvents {
   display: flex;
   flex-direction: column;
+  overflow: auto;
+
 }
 
 .sidebarEvent {
@@ -214,4 +216,19 @@
 
 .activity:hover {
   background-color: #D3D3D3
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #696969
+}
+
+.welcome-create {
+  margin-right: .5%
+}
+
+.welcome-login {
+  margin-left: .5%
 }

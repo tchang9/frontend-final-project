@@ -1,15 +1,20 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
-import {post} from '../adapters'
+import {post, get} from '../adapters'
 import AddUserForm from './AddUserForm'
 import Login from './Login'
+var moment = require('moment');
+
+// import { get } from 'http';
 
 class JoinEvent extends React.Component{
 
     state = {
         createAccountModal: false,
         loginModal: false,
-        showButtons : false
+        showButtons : false,
+        error: false,
+        event: {}
     }
 
     handleJoinEvent = () => {
@@ -19,12 +24,29 @@ class JoinEvent extends React.Component{
             if (response.message) {
                 this.props.history.push(`/profile/events/`)
             } else {
-                // props.history.push(`/signup?redirect=join-event/${response.id}`)
                 this.setState({
                     showButtons: true
                 })
             }
         })
+    }
+
+    componentDidMount() {
+        try {
+            const eventId = atob(this.props.match.params.eventId)
+            get(`http://localhost:3000/events/${eventId}`)
+            .then(event => {
+                this.setState({
+                    event: event
+                })
+            })
+        }
+        catch(error) {
+            this.setState({
+                error: true
+            })
+        }
+        
     }
 
     handleClick = (e) => {
@@ -39,8 +61,18 @@ class JoinEvent extends React.Component{
         return (
 
             <div className="join-event">
-                <div>
-                    <Button onClick={this.handleJoinEvent} variant="secondary">Join Event</Button>
+                <div className="joinEventName">
+                    {this.state.error 
+                    ? 
+                    <h2>You Shouldn't Be Here</h2> 
+                    : 
+                    <>
+                        <h2>{this.state.event.name}</h2>
+                        <h4>{moment(this.state.event.start_date).format('MMMM Do')} - {moment(this.state.event.end_date).format('MMMM Do YYYY')}</h4>
+                        {this.state.showButtons ? null :
+                        <Button onClick={this.handleJoinEvent} variant="secondary">Join Event</Button>}
+                    </>
+                    }
                 </div>
                 <div className="joinButtons">
                     {this.state.showButtons ? 

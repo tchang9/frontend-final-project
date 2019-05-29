@@ -102,7 +102,8 @@ class AddActivityForm extends React.Component {
                         name="name" 
                         type="text" 
                         placeholder="Enter Activity Name"
-                        value={this.state.name} />
+                        value={this.state.name}
+                        required />
                 </Form.Group>
 
                 <Form.Group >

@@ -65,6 +65,10 @@
   display: flex;
 }
 
+.nav-link {
+  color: black;
+}
+
 /* Sidebar Component CSS */
 .sidebarName {
   font-size: 180%;
@@ -103,6 +107,10 @@
   color: #3773B0;
   font-size: 10%;
   margin-top: auto;
+}
+
+.sidebarAddEvent button {
+  margin-bottom: 30%
 }
 
 /* Header Component CSS */
@@ -172,15 +180,22 @@
 
 .addCommentForm {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  margin-left: auto;
+  align-items: baseline;
   padding-right: 2%;
   padding-top: 1%;
+}
+
+.addCommentForm .form-group {
+  margin-right: 4%;
 }
 
 .commentInput {
   border:1px solid gray;
   height: 6.1vh;
   margin-right: 5%;
+  width: 40vh;
 }
 
 /* Schedule Container */
@@ -218,7 +233,15 @@
   align-items: center;
   justify-content: center;
   background-color: #696969;
+  flex-direction: column;
   height: 100vh;
+}
+
+.welcomeButtons {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .welcome-create {
@@ -236,6 +259,21 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
+}
+
+.joinEventName{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinEventName h4 {
+  margin-top: 0px;
+}
+
+.joinEventName h2 {
+  margin-bottom: 0px;
 }
 
 .joinButtons {

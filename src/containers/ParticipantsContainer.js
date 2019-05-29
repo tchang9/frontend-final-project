@@ -1,6 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchEventUsers} from '../actions'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
+import Button from 'react-bootstrap/Button'
 
 class ParticipantsContainer extends React.Component {
 
@@ -40,8 +44,22 @@ class ParticipantsContainer extends React.Component {
     render() {
         return (
             <>
-
-            <button onClick={this.handleClick} type="button" className="btn btn-primary btn-sm inviteButton">Invite Others!</button>
+            <ButtonToolbar>
+                <OverlayTrigger
+                trigger="click"
+                key={'left'}
+                placement={'left'}
+                overlay={
+                    <Popover
+                    id={`popover-positioned-${'left'}`}
+                    >
+                    <p style={{color: "black"}}>Copied to Clipboard!</p>
+                    </Popover>
+                }
+                >
+                <Button onClick={this.handleClick} className="inviteButton" variant="secondary">Invite Others!</Button>
+                </OverlayTrigger>
+            </ButtonToolbar>
 
             <div>
                 <table className="table table-hover">

@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { addComment } from '../actions'
 import {post} from '../adapters'
 import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 class AddCommentForm extends React.Component {
@@ -59,18 +57,6 @@ class AddCommentForm extends React.Component {
                         <div className="invalid-feedback">Please enter a comment!</div>
                     </div>
                 :
-                // <Form.Group as={Row}>
-                // <Col>
-                //     <Form.Control 
-                //         type="text"
-                //         className="commentInput"
-                //         onChange={this.handleChange}
-                //         name="comment" 
-                //         value={this.state.comment}
-                //         placeholder="Add a comment"
-                //     />
-                // </Col>
-                // </Form.Group>
                     <div className="form-group">
                         <input 
                             type="text" 

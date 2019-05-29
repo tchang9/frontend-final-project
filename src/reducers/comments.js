@@ -12,7 +12,7 @@ function commentsReducer(state = initialState, action) {
             newState[action.payload.id] = action.payload
             return newState
         case LOGOUT:
-            return LOGOUT
+            return {}
         default:
             return state
     }

@@ -37,7 +37,6 @@ class Sidebar extends React.Component {
 
     render() {
         let addModalClose = () => this.setState({ addEventModal: false });
-        console.log(this.props.activeEventId)
         return (
             <>
                 <div>

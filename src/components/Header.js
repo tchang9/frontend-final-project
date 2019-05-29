@@ -57,7 +57,6 @@ class Header extends React.Component {
                             size="lg"
                             variant="btn-primary"
                             >
-                        <Dropdown.Item as="button">Profile</Dropdown.Item>
                         <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>
                         </DropdownButton>
                     </div>

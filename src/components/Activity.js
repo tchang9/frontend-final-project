@@ -12,7 +12,6 @@ class Activity extends React.Component {
     }
 
     handleDelete = () => {
-      // debugger
       this.props.deleteActivity(this.props.activity.id)
       this.props.onHide()
     }
@@ -44,13 +43,13 @@ class Activity extends React.Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              {this.props.activity.name}
+              <h2>{this.props.activity.name}</h2>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <h3>{moment(this.props.activity.date).format('dddd LL')}</h3>
-            <p>{this.getTime(this.props.activity.start_time)} - {this.getTime(this.props.activity.end_time)}</p>
-            <p>{this.props.activity.description}</p>
+            <h6>{this.getTime(this.props.activity.start_time)} - {this.getTime(this.props.activity.end_time)}</h6>
+            <h6>{this.props.activity.description}</h6>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="outline-info" onClick={this.handleClick}>Edit</Button>

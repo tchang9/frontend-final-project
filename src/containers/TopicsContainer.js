@@ -21,7 +21,7 @@ class TopicsContainer extends React.Component {
         return Object.keys(this.props.topics).map(id => {
             const topic = this.props.topics[id]
             return (
-                <Link key={v4()} to={`/profile/events/${topic.event_id}/topics/${topic.id}`} style={{ textDecoration: 'none' }}>
+                <Link className="topicsContainerTopic" key={v4()} to={`/profile/events/${topic.event_id}/topics/${topic.id}`} style={{ textDecoration: 'none' }}>
                     <Card  className="card text-black mb-3" bg="secondary" style={{ width: "auto" }}>
                         <Card.Body>
                         <Card.Title>{topic.label}</Card.Title>
@@ -48,7 +48,12 @@ class TopicsContainer extends React.Component {
                     <button onClick={this.addTopicClick} type="button" className="btn btn-outline-primary btn-sm">Add New Topic</button>
                 </div>
                 <div className="topics">
-                    {this.props.topics ? this.renderTopics() : "loading"}
+                    {this.props.topics && Object.keys(this.props.topics).length > 0 
+                    ? 
+                    this.renderTopics() 
+                    : 
+                    <h3>Add a topic!</h3>
+                    }
                 </div>
 
                 {this.state.addTopicModal ? 

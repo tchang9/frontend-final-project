@@ -49,7 +49,7 @@ class ScheduleContainer extends React.Component {
     render() {
         let addModalClose = () => this.setState({ addActivityModal: false });
         return (
-            <>
+            <div className="scheduleContainer">
                 <AddActivityButton addactivity={this.addActivity}/>
                 {this.state.addActivityModal ? 
                     <AddActivityForm
@@ -61,9 +61,13 @@ class ScheduleContainer extends React.Component {
                     null
                     }
                 <div className="dayCards">
-                    {this.renderDays()}
+                    {this.renderDays().length > 0 ? 
+                    this.renderDays()
+                    :
+                    <h3>Add an Activity!</h3>
+                    }
                 </div>
-            </>
+            </div>
         )
     }
 }

@@ -40,23 +40,27 @@ class Header extends React.Component {
             <>
                 {this.props.event ? 
                 <>
-                    
-                    <h1 className="eventName">{this.props.event.name}</h1>
-                    <p className="eventDate">
-                        {moment(this.props.event.start_date).format('MMMM Do')} - {moment(this.props.event.end_date).format('MMMM Do YYYY')}
-                    </p>
-                    <p className="eventLocation">{this.props.event.location}</p>
-                    <button onClick={this.editEvent} type="button" className="btn btn-primary editEvent btn-sm">Edit Event</button>
-                    <DropdownButton 
-                        className="user" 
-                        id="dropdown-item-button" 
-                        title={this.props.currentUser.first_name ? this.props.currentUser.first_name : "loading"}
-                        size="lg"
-                        variant="btn-primary"
-                        >
-                    <Dropdown.Item as="button">Profile</Dropdown.Item>
-                    <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>
-                    </DropdownButton>
+                    <div className="eventDetails">
+                        <h1 className="eventName">{this.props.event.name}</h1>
+                        <p className="eventDate">
+                            {moment(this.props.event.start_date).format('MMMM Do')} - {moment(this.props.event.end_date).format('MMMM Do YYYY')}
+                        </p>
+                        <p className="eventLocation">{this.props.event.location}</p>
+                        <button onClick={this.editEvent} type="button" className="btn btn-primary editEvent btn-sm">Edit Event</button>
+                    </div>
+
+                    <div className="headerButtons">
+                        <DropdownButton 
+                            className="user" 
+                            id="dropdown-item-button" 
+                            title={this.props.currentUser.first_name ? this.props.currentUser.first_name : "loading"}
+                            size="lg"
+                            variant="btn-primary"
+                            >
+                        <Dropdown.Item as="button">Profile</Dropdown.Item>
+                        <Dropdown.Item as="button" onClick={this.handleClick}>Logout</Dropdown.Item>
+                        </DropdownButton>
+                    </div>
 
  
                     {this.state.editEventModal ? 

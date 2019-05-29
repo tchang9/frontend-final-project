@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, ADD_COMMENT } from '../constants/ActionTypes'
+import { FETCH_COMMENTS, ADD_COMMENT, LOGOUT } from '../constants/ActionTypes'
 
 
 const initialState = {}
@@ -11,6 +11,8 @@ function commentsReducer(state = initialState, action) {
             const newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
+        case LOGOUT:
+            return LOGOUT
         default:
             return state
     }

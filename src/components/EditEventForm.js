@@ -109,6 +109,7 @@ class EditEventForm extends React.Component{
                                 placeholder="Enter Activity Location"
                             />
                         </Form.Group>
+                        <button style={{display: 'none'}}>For Enter to Submit</button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

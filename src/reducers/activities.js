@@ -1,4 +1,4 @@
-import { FETCH_ACTIVITIES, EDIT_ACTIVITY, ADD_ACTIVITY, DELETE_ACTIVITY } from '../constants/ActionTypes'
+import { FETCH_ACTIVITIES, EDIT_ACTIVITY, ADD_ACTIVITY, DELETE_ACTIVITY, LOGOUT } from '../constants/ActionTypes'
 
 
 const initialState = {}
@@ -15,6 +15,8 @@ function activitiesReducer(state = initialState, action) {
             let newState = {...state}
             delete newState[action.payload]
             return newState
+        case LOGOUT:
+            return {}
         default:
             return state
     }

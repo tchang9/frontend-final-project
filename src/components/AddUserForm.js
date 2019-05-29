@@ -252,6 +252,7 @@ class AddUserForm extends React.Component{
                             />
                         </Form.Group>
                         }
+                        <button style={{display: 'none'}}>For Enter to Submit</button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

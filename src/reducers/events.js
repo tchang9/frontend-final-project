@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, EDIT_EVENT, ADD_EVENT, DELETE_EVENT } from '../constants/ActionTypes'
+import { FETCH_EVENTS, EDIT_EVENT, ADD_EVENT, DELETE_EVENT, LOGOUT } from '../constants/ActionTypes'
 
 
 const initialState = {}
@@ -15,6 +15,8 @@ function eventsReducer(state = initialState, action) {
                 let newState = {...state}
                 delete newState[action.payload]
                 return newState
+        case LOGOUT:
+            return {}
         default:
             return state
     }

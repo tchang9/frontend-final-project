@@ -33,7 +33,6 @@ class AddCommentForm extends React.Component {
                     comment: '',
                     errors: false
                 })
-                debugger
                 window.scrollTo(0,document.querySelector('.bodyContainer').scrollHeight)
             })
         } else {

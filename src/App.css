@@ -209,11 +209,6 @@
   margin-left: auto
 }
 
-.welcome {
-  background-color: black;
-  height: 100vh;
-}
-
 .activity:hover {
   background-color: #D3D3D3
 }
@@ -222,7 +217,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #696969
+  background-color: #696969;
+  height: 100vh;
 }
 
 .welcome-create {
@@ -231,4 +227,17 @@
 
 .welcome-login {
   margin-left: .5%
+}
+
+.join-event {
+  display: flex;
+  background-color: #696969;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.joinButtons {
+  margin-top: 3%
 }

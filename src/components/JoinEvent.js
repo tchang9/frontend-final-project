@@ -37,34 +37,45 @@ class JoinEvent extends React.Component{
         let createAccountModalClose = () => this.setState({ createAccountModal: false });
         let loginModalClose = () => this.setState({ loginModal: false });
         return (
-            <>
-                <p>Join Event</p>
-                <Button onClick={this.handleJoinEvent} variant="secondary">Join Event</Button>
-                {this.state.showButtons ? 
-                    <div>
-                        <Button name="loginModal" onClick={this.handleClick} variant="secondary">Login</Button>
-                        <Button name="createAccountModal" onClick={this.handleClick} variant="secondary">Create Account</Button>
-                    </div>
-                :
-                null
-                }
-                {this.state.createAccountModal ? 
-                    <AddUserForm 
-                    show={this.state.createAccountModal}
-                    onHide={createAccountModalClose}
-                    />
-                :
-                null
-                }
-                {this.state.loginModal ? 
-                    <Login 
-                    show={this.state.loginModal}
-                    onHide={loginModalClose}
-                    />
-                :
-                null
-                }
-            </>
+
+            <div className="join-event">
+                <div>
+                    <Button onClick={this.handleJoinEvent} variant="secondary">Join Event</Button>
+                </div>
+                <div className="joinButtons">
+                    {this.state.showButtons ? 
+                        <div>
+                            <Button 
+                                name="loginModal" 
+                                onClick={this.handleClick} variant="secondary"
+                                style={{marginRight: "1em"}}
+                            >
+                                Login
+                            </Button>
+                            <Button style={{marginLeft: "1em"}} name="createAccountModal" onClick={this.handleClick} variant="secondary">Create Account</Button>
+                        </div>
+                    :
+                    null
+                    }
+                    {this.state.createAccountModal ? 
+                        <AddUserForm 
+                        show={this.state.createAccountModal}
+                        onHide={createAccountModalClose}
+                        />
+                    :
+                    null
+                    }
+                    {this.state.loginModal ? 
+                        <Login 
+                        show={this.state.loginModal}
+                        onHide={loginModalClose}
+                        />
+                    :
+                    null
+                    }
+                </div>
+            </div>
+
         )
     }
 }

@@ -48,7 +48,12 @@ class TopicsContainer extends React.Component {
                     <button onClick={this.addTopicClick} type="button" className="btn btn-outline-primary btn-sm">Add New Topic</button>
                 </div>
                 <div className="topics">
-                    {this.props.topics ? this.renderTopics() : "loading"}
+                    {this.props.topics && Object.keys(this.props.topics).length > 0 
+                    ? 
+                    this.renderTopics() 
+                    : 
+                    <h3>Add a topic!</h3>
+                    }
                 </div>
 
                 {this.state.addTopicModal ? 

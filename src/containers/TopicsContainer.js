@@ -23,7 +23,7 @@ class TopicsContainer extends React.Component {
             return (
                 <Link className="topicsContainerTopic" key={v4()} to={`/profile/events/${topic.event_id}/topics/${topic.id}`} style={{ textDecoration: 'none' }}>
                     <Card  className="card text-black mb-3" bg="secondary" style={{ width: "auto" }}>
-                        <Card.Body>
+                        <Card.Body className="topicsContainerCard">
                         <Card.Title>{topic.label}</Card.Title>
                         <Card.Text>
                         </Card.Text>

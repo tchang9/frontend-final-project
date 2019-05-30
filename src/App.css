@@ -151,6 +151,10 @@
   align-content: space-between;
 }
 
+.topics h3 {
+  margin-left: 3%
+}
+
 .addTopicButton{
   margin-left: auto;
   padding-right: 1%
@@ -160,6 +164,10 @@
   height:5%;
   width: 20%;
   padding: 1%;
+}
+
+.topicsContainerCard:hover {
+  background-color: #D3D3D3;
 }
 
 .card-title {
@@ -209,6 +217,10 @@
   display:flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+
+.dayCards h3 {
+  margin-left: 3%
 }
 
 .dayCard {
@@ -278,4 +290,8 @@
 
 .joinButtons {
   margin-top: 3%
+}
+
+.welcome h1 {
+  font-size: 300%
 }

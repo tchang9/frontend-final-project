@@ -57,7 +57,7 @@ class ParticipantsContainer extends React.Component {
                     </Popover>
                 }
                 >
-                <Button onClick={this.handleClick} className="inviteButton" variant="secondary">Invite Others!</Button>
+                <Button onClick={this.handleClick} className="inviteButton" variant="btn btn-primary">Invite Others!</Button>
                 </OverlayTrigger>
             </ButtonToolbar>
 

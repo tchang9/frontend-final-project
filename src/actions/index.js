@@ -1,6 +1,9 @@
 import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY, ADD_ACTIVITY, FETCH_EVENT_USERS, DELETE_ACTIVITY, DELETE_EVENT } from "../constants/ActionTypes";
 import { get, patch, post, destroy } from '../adapters'
 
+// const server = localhost:3000
+const server = "http://localhost:3000"
+
 export function getTopics(topics) {
     return {
         type: "GET_TOPICS",
@@ -17,7 +20,7 @@ export function getComments(comments) {
 
 export const fetchEvents = () => {
     return (dispatch) => {
-        get(`http://localhost:3000/events`)
+        get(`${server}/events`)
         .then(events => {
             dispatch({type: FETCH_EVENTS, payload: events})
         })
@@ -30,7 +33,7 @@ export const selectEvent = (eventId) => {
 
 export const fetchTopics = (eventId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/fetch-topics`, {
+        fetch(`${server}/fetch-topics`, {
             method: 'POST',
             body: JSON.stringify({id: eventId}),
             headers:{
@@ -46,7 +49,7 @@ export const fetchTopics = (eventId) => {
 
 export const fetchComments = (topicId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/fetch-comments`, {
+        fetch(`${server}/fetch-comments`, {
             method: 'POST',
             body: JSON.stringify({id: topicId}),
             headers:{
@@ -82,7 +85,7 @@ export const addComment = (comment) => {
 
 export const fetchActivities = (eventId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/fetch-activities`, {
+        fetch(`${server}/fetch-activities`, {
             method: 'POST',
             body: JSON.stringify({id: eventId}),
             headers:{
@@ -102,7 +105,7 @@ export const fetchActivities = (eventId) => {
 
 export const editEvent = (event) => {
     return (dispatch) => {
-        patch(`http://localhost:3000/events/${event.id}`, event)
+        patch(`${server}/events/${event.id}`, event)
         .then(event => {
             dispatch({type: EDIT_EVENT, payload: event})
         })
@@ -112,7 +115,7 @@ export const editEvent = (event) => {
 
 export const addEvent = (event) => {
     return (dispatch) => {
-        post(`http://localhost:3000/events`, event)
+        post(`${server}/events`, event)
         .then(event => {
             dispatch({type: ADD_EVENT, payload: event})
         })
@@ -129,7 +132,7 @@ export const addactivity = (activity) => {
 
 export const fetchEventUsers = (eventId) => {
     return (dispatch) => {
-        post(`http://localhost:3000/fetch-event-users`, eventId)
+        post(`${server}/fetch-event-users`, eventId)
         .then(users => {
             dispatch({type: FETCH_EVENT_USERS, payload: users})
         })
@@ -138,7 +141,7 @@ export const fetchEventUsers = (eventId) => {
 
 export const deleteActivity = (activityId) => {
     return (dispatch) => {
-        destroy(`http://localhost:3000/activities/${activityId}`)
+        destroy(`${server}/activities/${activityId}`)
         .then(activityId => {
             dispatch({type: DELETE_ACTIVITY, payload: activityId})
         })
@@ -147,7 +150,7 @@ export const deleteActivity = (activityId) => {
 
 export const deleteEvent = (eventId) => {
     return (dispatch) => {
-        destroy(`http://localhost:3000/events/${eventId}`)
+        destroy(`${server}/events/${eventId}`)
         .then(eventId => {
             dispatch({type: DELETE_EVENT, payload: eventId})
         })

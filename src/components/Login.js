@@ -89,6 +89,8 @@ class Login extends React.Component{
 
     render() {
         let {show, onHide} = this.props
+        console.log(show)
+        console.log(onHide)
         return (
             <Modal
                 show={show}

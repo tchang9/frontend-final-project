@@ -24,7 +24,6 @@ class ParticipantsContainer extends React.Component {
 
         })
     }
-    
 
     generateMagicLink = () => {
         const eventId = this.props.activeEventId

@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom'
 import ProfileContainer from './containers/ProfileContainer'
 import JoinEvent from './components/JoinEvent';
 import Welcome from './containers/Welcome'
-import NoMatch from './components/NoMatch'
+// import NoMatch from './components/NoMatch'
 
 class App extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class App extends React.Component {
         <Route path='/add-event' component = {AddEventForm} />
         <Route path='/profile' component = {ProfileContainer} />
         <Route path='/join-event/:eventId' component = {JoinEvent} />
-        <Route component = {NoMatch} />
+        {/* <Route component = {NoMatch} /> */}
       </>
     )
   }

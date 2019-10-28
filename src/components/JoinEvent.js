@@ -19,7 +19,7 @@ class JoinEvent extends React.Component{
 
     handleJoinEvent = () => {
         const eventId = atob(this.props.match.params.eventId)
-        post(`http://localhost:3000/join-event/${eventId}`)
+        post(`https://eventii.herokuapp.com/join-event/${eventId}`)
         .then(response => {
             if (response.message) {
                 this.props.history.push(`/profile/events/`)
@@ -34,7 +34,7 @@ class JoinEvent extends React.Component{
     componentDidMount() {
         try {
             const eventId = atob(this.props.match.params.eventId)
-            get(`http://localhost:3000/events/${eventId}`)
+            get(`https://eventii.herokuapp.com/events/${eventId}`)
             .then(event => {
                 this.setState({
                     event: event

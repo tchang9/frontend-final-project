@@ -52,7 +52,7 @@ class AddTopicForm extends React.Component {
         e.preventDefault()
         if (this.validator()) {
             const data = {...this.state.form, id: this.props.eventId}
-            post('http://localhost:3000/topics', data)
+            post('https://eventii.herokuapp.com/topics', data)
             .then(res => {
                 const topicId = res.id
                 this.props.history.push(`/profile/events/${this.props.eventId}/topics/${topicId}`)

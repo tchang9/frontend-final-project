@@ -71,7 +71,7 @@ class AddActivityForm extends React.Component {
         delete body.endMinute
         delete body.endClock
         
-        post(`http://localhost:3000/activities`, body)
+        post(`https://eventii.herokuapp.com/activities`, body)
         .then( (response) => {
             this.props.onHide()
             this.props.addactivity(response)

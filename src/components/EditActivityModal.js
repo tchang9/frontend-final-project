@@ -106,7 +106,7 @@ class EditActivityModal extends React.Component {
         delete body.endMinute
         delete body.endClock
         
-        patch(`http://localhost:3000/activities/${this.props.activity.id}`, body)
+        patch(`https://eventii.herokuapp.com/activities/${this.props.activity.id}`, body)
         .then( (response) => {
             this.props.onHide()
             this.props.editActivity(response)

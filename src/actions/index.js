@@ -1,8 +1,9 @@
 import { FETCH_EVENTS, SELECT_EVENT, FETCH_TOPICS, FETCH_COMMENTS, SELECT_TOPIC, LOGIN, ADD_COMMENT, FETCH_ACTIVITIES, EDIT_EVENT, ADD_EVENT, LOGOUT, EDIT_ACTIVITY, ADD_ACTIVITY, FETCH_EVENT_USERS, DELETE_ACTIVITY, DELETE_EVENT } from "../constants/ActionTypes";
 import { get, patch, post, destroy } from '../adapters'
 
-// const server = localhost:3000
-const server = "http://localhost:3000"
+const server = "https://eventii.herokuapp.com/"
+// const server = "http://localhost:3000"
+
 
 export function getTopics(topics) {
     return {

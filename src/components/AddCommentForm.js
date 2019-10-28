@@ -24,7 +24,7 @@ class AddCommentForm extends React.Component {
             const topicId = this.props.topicId
             const data = {...this.state, topicId}
 
-            post('http://localhost:3000/comments', data)
+            post('https://eventii.herokuapp.com/comments', data)
             .then(comment => {
                 this.props.addComment(comment)
                 this.setState({

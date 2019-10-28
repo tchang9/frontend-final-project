@@ -28,7 +28,7 @@ class ParticipantsContainer extends React.Component {
     generateMagicLink = () => {
         const eventId = this.props.activeEventId
         const encodedEventId = btoa(eventId)
-        return `http://localhost:3001/join-event/${encodedEventId}`
+        return `https://eventii.herokuapp.com/join-event/${encodedEventId}`
     }
 
     handleClick = () => {

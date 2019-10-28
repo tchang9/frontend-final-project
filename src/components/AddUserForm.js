@@ -63,7 +63,7 @@ class AddUserForm extends React.Component{
         })
         if (this.validator()) {
             if (this.state.form.password === this.state.form.confirmPassword) {
-                post('http://localhost:3000/users', this.state.form)
+                post('https://eventii.herokuapp.com/users', this.state.form)
                 .then(response => {
                     if (response.errors) {
                         this.setState({
@@ -75,7 +75,7 @@ class AddUserForm extends React.Component{
                             this.props.history.push('/profile')
                         } else {
                             const eventId = atob(this.props.match.params.eventId)
-                            post(`http://localhost:3000/join-event/${eventId}`)
+                            post(`https://eventii.herokuapp.com/join-event/${eventId}`)
                             .then( () => {
                                 this.props.history.push('/profile')
                             })

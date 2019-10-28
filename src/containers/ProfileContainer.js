@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
     componentDidMount(){
 		const token = localStorage.getItem("token")
 		if (token){
-            get("http://localhost:3000/auto_login")
+            get("https://eventii.herokuapp.com/auto_login")
 			.then((response) => {
 				if (response.errors) {
                     this.props.history.push('/welcome')

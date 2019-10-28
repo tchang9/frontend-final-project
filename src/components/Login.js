@@ -57,7 +57,7 @@ class Login extends React.Component{
         })
 
         if (this.validator()) {
-            fetch('http://localhost:3000/login', {
+            fetch('https://eventii.herokuapp.com/login', {
                 method: "POST", 
                 body: JSON.stringify(this.state.form),
                 headers:{
@@ -75,7 +75,7 @@ class Login extends React.Component{
                     localStorage.setItem("token", response.token)
                     if (this.props.match.params.eventId) {
                         const eventId = atob(this.props.match.params.eventId)
-                        post(`http://localhost:3000/join-event/${eventId}`)
+                        post(`https://eventii.herokuapp.com/join-event/${eventId}`)
                         .then( () => {
                             this.props.history.push('/profile')
                         })
@@ -89,8 +89,6 @@ class Login extends React.Component{
 
     render() {
         let {show, onHide} = this.props
-        console.log(show)
-        console.log(onHide)
         return (
             <Modal
                 show={show}

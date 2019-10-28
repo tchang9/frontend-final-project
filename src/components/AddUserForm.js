@@ -70,6 +70,7 @@ class AddUserForm extends React.Component{
                             backendError: response.errors[0]
                         })
                     } else {
+                        console.log(response)
                         localStorage.setItem("token", response.token)
                         if (!this.props.match.params.eventId) {
                             this.props.history.push('/profile')
